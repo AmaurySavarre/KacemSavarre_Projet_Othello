@@ -9,6 +9,6 @@
 
 
     <string name="title_activity_versus">VersusActivity</string>
-    <string name="pvp">Joueur VS Joueur</string>
-    <string name="vpc">Joueur VS Ordinateur</string>
+    <string name="textPvP">Player vs Player</string>
+    <string name="textPvCPU">Player VS Machine</string>
 </resources>
