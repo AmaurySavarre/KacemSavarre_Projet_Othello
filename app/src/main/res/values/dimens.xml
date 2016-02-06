@@ -5,5 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Use sp instead of dp for font -->
-    <dimen name="text_button">40sp</dimen>
+    <dimen name="text_button_small">30sp</dimen>
+    <dimen name="text_button_normal">40sp</dimen>
+    <dimen name="text_button_big">60sp</dimen>
 </resources>

@@ -30,6 +30,7 @@
         style="@style/menuButton"
         android:id="@+id/buttonPlay"
         android:text="@string/textPlay"
+        android:textSize="@dimen/text_button_normal"
         android:layout_above="@+id/buttonHighScores"
         android:onClick="onPlay" />
 
@@ -37,12 +38,14 @@
         style="@style/menuButton"
         android:id="@+id/buttonHighScores"
         android:text="@string/textHighScores"
+        android:textSize="@dimen/text_button_normal"
         android:onClick="onHighScores" />
 
     <Button
         style="@style/menuButton"
         android:id="@+id/buttonExit"
         android:text="@string/textExit"
+        android:textSize="@dimen/text_button_normal"
         android:layout_below="@+id/buttonHighScores"
         android:onClick="onExit" />
 
