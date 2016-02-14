@@ -1,5 +1,6 @@
 package com.example.utilisateur.othello;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen1);
         StartAnimations();
     }
+
+    //TODO Corriger l'animation pour le layout 1 (apparition de 3 secondes) qui ne fonctionne pas.
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
@@ -25,12 +28,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
-        ImageView iv = (ImageView) findViewById(R.id.logo);
+        ImageView iv = (ImageView) findViewById(R.id.black_disk);
         iv.clearAnimation();
         iv.startAnimation(anim);
 
         anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
+        setContentView(R.layout.activity_splash_screen2);
         RelativeLayout l2 = (RelativeLayout) findViewById(R.id.splash_layout2);
         l2.setVisibility(View.VISIBLE);
         l2.clearAnimation();
