@@ -1,6 +1,6 @@
 package com.example.utilisateur.othello;
 
-import android.os.SystemClock;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +16,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen1);
         StartAnimations();
+
+        Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
+        startActivity(intent);
     }
 
     //TODO Corriger l'animation pour le layout 1 (apparition de 3 secondes) qui ne fonctionne pas.

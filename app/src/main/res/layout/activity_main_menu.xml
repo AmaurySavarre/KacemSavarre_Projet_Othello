@@ -8,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.utilisateur.othello.MainMenuActivity"
-    android:background="#f91ee028"
-    android:backgroundTint="@color/background"
+    android:background="@color/background"
     android:minWidth="@dimen/abc_button_inset_horizontal_material">
 
     <TextView
@@ -54,6 +53,7 @@
         android:id="@+id/rulesButton"
         android:src="@drawable/ic_help_outline_black_48dp"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:onClick="onRules" />
 
     <ImageButton
@@ -61,6 +61,7 @@
         android:id="@+id/settingsButton"
         android:src="@drawable/ic_settings_black_48dp"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:onClick="onSettings" />
 
 </RelativeLayout>
