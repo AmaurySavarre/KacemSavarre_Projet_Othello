@@ -3,12 +3,19 @@
     <string name="action_settings">Settings</string>
 
     <!-- Main Menu -->
-    <string name="textPlay">Play</string>
-    <string name="textHighScores">High Scores</string>
-    <string name="textExit">Exit</string>
+    <string name="MainMenu.label">Main Menu</string>
+    <string name="MainMenu.play">Play</string>
+    <string name="MainMenu.high_scores">High Scores</string>
+    <string name="MainMenu.exit">Exit</string>
 
+    <!-- Versus Menu -->
+    <string name="VersusMenu.pvp">Player vs Player</string>
+    <string name="VersusMenu.pvm">Player VS Machine</string>
 
-    <string name="title_activity_versus">VersusActivity</string>
-    <string name="textPvP">Player vs Player</string>
-    <string name="textPvCPU">Player VS Machine</string>
+    <!-- Settings -->
+    <string name="Settings.label">Settings</string>
+    <string name="Settings.language">Language</string>
+    <string name="Settings.colors">Colors</string>
+    <string name="Settings.music">Music</string>
+    <string name="Settings.choose_language">Choose a language...</string>
 </resources>

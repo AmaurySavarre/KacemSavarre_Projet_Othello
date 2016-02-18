@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.utilisateur.othello.SettingsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
+    style="@style/AppTheme.TextView.title">
+
+    <TextView
+        style="@style/AppTheme.TextView.settings"
+        android:id="@+id/Settings.TextView.language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Settings.language"/>
+
+    <Spinner
+        android:id="@+id/Settings.Spinner.language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings.TextView.language"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dropdown"/>
+
+    <TextView
+        style="@style/AppTheme.TextView.settings"
+        android:id="@+id/Settings.TextView.colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings.Spinner.language"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Settings.colors"/>
+
+    <GridLayout
+        android:id="@+id/Settings.GridLayout.colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings.TextView.colors"
+        android:layout_centerHorizontal="true">
+
+    </GridLayout>
+
+    <TextView
+        style="@style/AppTheme.TextView.settings"
+        android:id="@+id/Settings.TextView.music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings.GridLayout.colors"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Settings.music"/>
+
+    <SeekBar
+        android:id="@+id/Settings.SeekBar.music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings.TextView.music"/>
+
+</RelativeLayout>

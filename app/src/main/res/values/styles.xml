@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/background</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,6 +17,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
     <style name="menuButton" >
         <item name="android:layout_width">match_parent</item>
@@ -40,6 +46,42 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">#00ffffff</item>
         <item name="android:layout_alignParentBottom">true</item>
+    </style>
+    
+    <style name="AppTheme.TextView">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:typeface">normal</item>
+    </style>
+
+    <style name="AppTheme.TextView.title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:gravity">center</item>
+
+        <item name="android:textColor">#f7f983</item>
+        <item name="android:textSize">@dimen/Text.big</item>
+
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">9</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
+    </style>
+
+    <style name="AppTheme.TextView.settings">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:gravity">center</item>
+
+        <item name="android:textColor">#f7f983</item>
+        <item name="android:textSize">@dimen/Text.normal</item>
+
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">9</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">4</item>
     </style>
 
 </resources>

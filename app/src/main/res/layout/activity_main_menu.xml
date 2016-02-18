@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -12,39 +13,33 @@
     android:minWidth="@dimen/abc_button_inset_horizontal_material">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Main menu "
+        style="@style/AppTheme.TextView.title"
         android:id="@+id/textView"
-        android:textSize="50sp"
-        android:textColorLink="#f7f270"
-        android:textIsSelectable="false"
-        android:textColor="#f7f983"
-        android:textAlignment="center"
+        android:text="@string/MainMenu.label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         style="@style/menuButton"
         android:id="@+id/buttonPlay"
-        android:text="@string/textPlay"
-        android:textSize="@dimen/text_button_normal"
+        android:text="@string/MainMenu.play"
+        android:textSize="@dimen/Text.normal"
         android:layout_above="@+id/buttonHighScores"
         android:onClick="onPlay" />
 
     <Button
         style="@style/menuButton"
         android:id="@+id/buttonHighScores"
-        android:text="@string/textHighScores"
-        android:textSize="@dimen/text_button_normal"
+        android:text="@string/MainMenu.high_scores"
+        android:textSize="@dimen/Text.normal"
         android:onClick="onHighScores" />
 
     <Button
         style="@style/menuButton"
         android:id="@+id/buttonExit"
-        android:text="@string/textExit"
-        android:textSize="@dimen/text_button_normal"
+        android:text="@string/MainMenu.exit"
+        android:textSize="@dimen/Text.normal"
         android:layout_below="@+id/buttonHighScores"
         android:onClick="onExit" />
 

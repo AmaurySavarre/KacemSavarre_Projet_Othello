@@ -24,15 +24,15 @@
 
     <Button
         style="@style/menuButton"
-        android:text="@string/textPvP"
-        android:textSize="@dimen/text_button_small"
+        android:text="@string/VersusMenu.pvp"
+        android:textSize="@dimen/Text.small"
         android:id="@+id/buttonPVP"
         android:layout_above="@+id/buttonPVCPU"/>
 
     <Button
         style="@style/menuButton"
-        android:text="@string/textPvCPU"
-        android:textSize="@dimen/text_button_small"
+        android:text="@string/VersusMenu.pvm"
+        android:textSize="@dimen/Text.small"
         android:id="@+id/buttonPVCPU" />
 
     <Spinner
