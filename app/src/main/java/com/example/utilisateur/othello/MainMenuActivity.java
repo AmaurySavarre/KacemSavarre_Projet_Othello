@@ -3,7 +3,9 @@ package com.example.utilisateur.othello;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -47,5 +49,9 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onSettings(View v)
     {
         Toast.makeText(getApplicationContext(), "onSettings()", Toast.LENGTH_SHORT).show();
+
+        PopupWindow pop = new PopupWindow(findViewById(R.id.splash_layout1));
+        pop.showAtLocation(v, Gravity.NO_GRAVITY, 0, 0);
+        pop.update(50, 50, 300, 80);
     }
 }
