@@ -2,6 +2,9 @@
     <string name="app_name">Othello</string>
     <string name="action_settings">Settings</string>
 
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+
     <!-- Main Menu -->
     <string name="MainMenu.label">Main Menu</string>
     <string name="MainMenu.play">Play</string>
@@ -14,8 +17,8 @@
 
     <!-- Settings -->
     <string name="Settings.label">Settings</string>
-    <string name="Settings.language">Language</string>
-    <string name="Settings.colors">Colors</string>
-    <string name="Settings.music">Music</string>
+    <string name="Settings.language">Language :</string>
+    <string name="Settings.colors">Colors :</string>
+    <string name="Settings.music">Music :</string>
     <string name="Settings.choose_language">Choose a language...</string>
 </resources>

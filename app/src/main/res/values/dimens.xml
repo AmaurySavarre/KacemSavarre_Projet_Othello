@@ -5,6 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Use sp instead of dp for font -->
+    <dimen name="Text.tiny">20sp</dimen>
     <dimen name="Text.small">30sp</dimen>
     <dimen name="Text.normal">40sp</dimen>
     <dimen name="Text.big">60sp</dimen>

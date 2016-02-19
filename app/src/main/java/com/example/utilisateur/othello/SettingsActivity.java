@@ -3,6 +3,7 @@ package com.example.utilisateur.othello;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,12 +38,31 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         public View getDropDownView(int position, View convertView,ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
+            LayoutInflater inflater = getLayoutInflater();
+            View row = inflater.inflate(R.layout.row, parent, false);
+            TextView label = (TextView) row.findViewById(R.id.Row_TextView_name);
+            ImageView icon = (ImageView) row.findViewById(R.id.Row_ImageView_icon);
+
+
+            label.setText(languages_string[position]);
+            icon.setImageResource(languages_icon[position]);
+
+            return row;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
+            LayoutInflater inflater = getLayoutInflater();
+            View row = inflater.inflate(R.layout.row, parent, false);
+            row.setBackground(getDrawable(R.drawable.spinner_shape));
+            TextView label = (TextView) row.findViewById(R.id.Row_TextView_name);
+            ImageView icon = (ImageView) row.findViewById(R.id.Row_ImageView_icon);
+
+
+            label.setText(languages_string[position]);
+            icon.setImageResource(languages_icon[position]);
+
+            return row;
         }
 
         public View getCustomView(int position, View convertView, ViewGroup parent) {

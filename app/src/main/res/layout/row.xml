@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/row_shape">
 
     <ImageView
         android:id="@+id/Row.ImageView.icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:padding="10sp"
-        android:gravity="center"/>
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:gravity="center"
+        />
 
     <TextView
+        style="@style/AppTheme.TextView.settings.row"
         android:id="@+id/Row.TextView.name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/Row.ImageView.icon"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/Text.small"
-        android:gravity="center"/>
+        android:paddingBottom="3sp"
+        android:paddingTop="3sp"
+        />
 
 </RelativeLayout>
