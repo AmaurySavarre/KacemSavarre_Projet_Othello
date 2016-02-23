@@ -21,4 +21,9 @@
     <string name="Settings.colors">Colors :</string>
     <string name="Settings.music">Music :</string>
     <string name="Settings.choose_language">Choose a language...</string>
+    <!-- Game -->
+    <string name="scores">Scores</string>
+    <string name="j1">J1</string>
+    <string name="s1">S1</string>
+    <string name="s2">S2</string>
 </resources>
