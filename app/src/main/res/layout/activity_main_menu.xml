@@ -13,8 +13,8 @@
     android:minWidth="@dimen/abc_button_inset_horizontal_material">
 
     <TextView
-        style="@style/AppTheme.TextView.title"
-        android:id="@+id/textView"
+        style="@style/AppTheme.TextView.subtitle"
+        android:id="@+id/MainMenu.TextView.title"
         android:text="@string/MainMenu.label"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentTop="true"
@@ -22,30 +22,30 @@
 
     <Button
         style="@style/menuButton"
-        android:id="@+id/buttonPlay"
+        android:id="@+id/MainMenu.Button.play"
         android:text="@string/MainMenu.play"
         android:textSize="@dimen/Text.normal"
-        android:layout_above="@+id/buttonHighScores"
+        android:layout_above="@+id/MainMenu.Button.highScores"
         android:onClick="onPlay" />
 
     <Button
         style="@style/menuButton"
-        android:id="@+id/buttonHighScores"
+        android:id="@+id/MainMenu.Button.highScores"
         android:text="@string/MainMenu.high_scores"
         android:textSize="@dimen/Text.normal"
         android:onClick="onHighScores" />
 
     <Button
         style="@style/menuButton"
-        android:id="@+id/buttonExit"
+        android:id="@+id/MainMenu.Button.exit"
         android:text="@string/MainMenu.exit"
         android:textSize="@dimen/Text.normal"
-        android:layout_below="@+id/buttonHighScores"
+        android:layout_below="@+id/MainMenu.Button.highScores"
         android:onClick="onExit" />
 
     <ImageButton
         style="@style/imageButton"
-        android:id="@+id/rulesButton"
+        android:id="@+id/MainMenu.ImageButton.rules"
         android:src="@drawable/ic_help_outline_black_48dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
@@ -53,7 +53,7 @@
 
     <ImageButton
         style="@style/imageButton"
-        android:id="@+id/settingsButton"
+        android:id="@+id/MainMenu.ImageButton.settings"
         android:src="@drawable/ic_settings_black_48dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"

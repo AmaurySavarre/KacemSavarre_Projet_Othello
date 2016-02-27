@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by Utilisateur on 2/23/2016.
+ * Created by Amaury on 2/23/2016.
  */
 public class StatePlayer1 implements State
 {

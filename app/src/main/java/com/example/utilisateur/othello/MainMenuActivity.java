@@ -3,6 +3,7 @@ package com.example.utilisateur.othello;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -11,6 +12,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import model.Othello;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -26,6 +29,16 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        Othello o = new Othello();
+
+        Log.e("Othello toString", o.toString());
+        Log.d("Othello", "playAt(2, 4)");
+        o.playAt(3, 3);
+        Log.e("Othello toString", "playAt(2, 4)" + o.toString());
+
+        TextView t = (TextView) findViewById(R.id.MainMenu_TextView_title);
+        t.setText(o.toString());
 
         /*popUpSettings = new PopupWindow(this);
         settingsLayout = new LinearLayout(this);
