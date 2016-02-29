@@ -9,5 +9,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // TODO: 29/02/2016 Générer la grille avec les boutons.
     }
 }

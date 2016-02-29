@@ -32,6 +32,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:paddingBottom="15sp"/>
+
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="J1"
@@ -92,3 +93,8 @@
         android:onClick="onBack" />
 
 </RelativeLayout>
+
+<!-- TODO: 29/02/2016 Modifier les textes des joueurs 1 et 2 pour être traductible  -->
+<!-- TODO: 29/02/2016 Modifier les TextView pour les scores afin d'éviter que l'interface bouge quand le score change (utiliser un layout ?)  -->
+<!-- TODO: 29/02/2016 Modifier l'icône de retour (la flèche) pour un icone de retour au menu principal (une maison ?) -->
+<!-- TODO: 29/02/2016 Essayer de corriger tout les warning (petit très orange sur le côté droit du code) en suivant les indications données  -->

@@ -6,4 +6,5 @@ package model;
 public interface Player
 {
     int getNumber();
+    void play(int X, int Y);
 }

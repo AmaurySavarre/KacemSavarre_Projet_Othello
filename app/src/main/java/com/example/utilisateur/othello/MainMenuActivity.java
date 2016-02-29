@@ -34,7 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Log.e("Othello toString", o.toString());
         Log.d("Othello", "playAt(2, 4)");
-        o.playAt(3, 3);
+        o.playAt(1, 3, 3);
         Log.e("Othello toString", "playAt(2, 4)" + o.toString());
 
         TextView t = (TextView) findViewById(R.id.MainMenu_TextView_title);
