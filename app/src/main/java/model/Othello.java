@@ -2,8 +2,9 @@ package model;
 
 import android.util.Log;
 
-import java.util.Iterator;
 import java.util.List;
+
+import controller.OthelloController;
 
 /**
  * Created by Amaury on 2/23/2016.
@@ -15,15 +16,15 @@ public class Othello
     private Player _player1;
     private Player _player2;
 
+    private OthelloController _controller;
+
     /**
      * Othello constructor.
      */
-    public Othello()
+    public Othello(OthelloController controller)
     {
+        _controller = controller;
         _board = new Board();
-        _player1 = new PlayerHuman(1);
-        _player2 = new PlayerHuman(2);
-        _actual_player = _player1;
     }
 
     /**

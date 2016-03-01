@@ -16,4 +16,9 @@ public class PlayerHuman implements Player
     {
         _number = number;
     }
+
+    public void play(int X, int Y)
+    {
+
+    }
 }

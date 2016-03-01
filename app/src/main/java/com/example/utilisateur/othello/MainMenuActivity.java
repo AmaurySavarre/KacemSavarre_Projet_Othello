@@ -60,7 +60,7 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity (intent);*/
         Toast.makeText(getApplicationContext(), "onPlay()", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(MainMenuActivity.this, VersusActivity.class);
+        Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
         startActivity(intent);
     }
 
