@@ -11,8 +11,8 @@
     tools:context="com.example.utilisateur.othello.GameActivity"
     android:background="@color/background_main">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <TableLayout
+        android:id="@+id/TableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
