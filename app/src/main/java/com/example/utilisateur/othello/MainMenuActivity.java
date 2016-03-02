@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import controller.OthelloController;
 import model.Othello;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        Othello o = new Othello();
+        OthelloController oc = new OthelloController();
+        Othello o = new Othello(oc);
 
         Log.e("Othello toString", o.toString());
         Log.d("Othello", "playAt(2, 4)");
