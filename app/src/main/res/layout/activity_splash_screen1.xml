@@ -52,4 +52,13 @@
         android:layout_marginTop="50dp"
         android:textStyle="bold|italic"
         android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/black_disk"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp" />
 </RelativeLayout>
