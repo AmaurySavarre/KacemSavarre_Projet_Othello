@@ -33,9 +33,11 @@ public class GameActivity extends AppCompatActivity {
 
         btns = new ImageButton[n][n];
         for(int i=0; i<n; i++){
-            TableRow row = new TableRow(this);
-            TableRow.LayoutParams paramsBtn = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,0);
 
+            TableRow row = new TableRow(this);
+            TableRow.LayoutParams paramsBtn = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,1);
+            paramsBtn.setMargins(1, 1, 1, 1);
+            paramsBtn.weight = 1;
             for (int j=0; j<n; j++){
                 ImageButton btn = new ImageButton(this);
                 btns[i][j] = btn;
