@@ -10,8 +10,7 @@ import android.widget.TableRow;
 public class GameActivity extends AppCompatActivity {
     private LinearLayout grid_layout;
     private TableLayout table;
-    // TODO: 3/2/2016 Initialiser le n dans le onCreate (c'est pour ça qu'il n'y a rien d'afficher :D )
-    private int n;
+    private int n=8;
     private ImageButton[][] btns;
 
     @Override
