@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void StartAnimations() {
         AnimationSet s = new AnimationSet(false);
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        anim.setDuration(1000);
+        anim.setDuration(2000);
         anim.reset();
         ImageView l = (ImageView) findViewById(R.id.black_disk);
         l.clearAnimation();
@@ -33,7 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
       Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim2.reset();
-        anim2.setDuration(500);
+        anim2.setDuration(5000);
         anim2.setStartOffset(1000);
 
         ImageView iv = (ImageView) findViewById(R.id.white_disk);
@@ -45,7 +45,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         ImageView l1 = (ImageView) findViewById(R.id.black_disk1);
         l1.clearAnimation();
         l1.startAnimation(anim1);
-        anim1.setDuration(5000);
+        anim1.setDuration(2000);
         anim1.setStartOffset(1000);
 
         s.addAnimation(anim);
