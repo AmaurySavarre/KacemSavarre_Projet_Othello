@@ -26,6 +26,7 @@ public class GameActivity extends AppCompatActivity {
         createButtons();
     }
 
+
     private void createButtons()
     {
         table.removeAllViews();
@@ -35,11 +36,12 @@ public class GameActivity extends AppCompatActivity {
         for(int i=0; i<n; i++){
 
             TableRow row = new TableRow(this);
-            TableRow.LayoutParams paramsBtn = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,1);
-            for (int j=0; j<n; j++){
+            TableRow.LayoutParams paramsBtn = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+
+        for (int j=0; j<=n; j++){
                 ImageButton btn = new ImageButton(this);
                 btns[i][j] = btn;
-                btn.setPadding(0,0,0,0);
+                btn.setPadding(2,2,2,2);
                 btn.setId(i * n + j);
                 btn.setLayoutParams(paramsBtn);
                 row.addView(btn);
@@ -62,8 +64,6 @@ public class GameActivity extends AppCompatActivity {
         }
         setButtons(); //initialiser les images
     }
-
-
 
     //initialiser les images avec l'image vide
     public void setButtons(){
