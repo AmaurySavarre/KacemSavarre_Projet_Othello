@@ -27,7 +27,7 @@
     <TextView
         style="@style/AppTheme.TextView.subtitle"
         android:textSize="@dimen/Text.small"
-        android:text="Scores"
+        android:text="@string/scores"
         android:id="@+id/Game.TextView.scores"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -35,7 +35,7 @@
 
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="J1"
+        android:text="@string/p1"
         android:id="@+id/Game.TextView.j1"
         android:layout_below="@+id/Game.TextView.scores"
         style="@style/AppTheme.TextView.subtitle"
@@ -46,7 +46,7 @@
 
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="J2"
+        android:text="@string/p2"
         android:id="@+id/Game.TextView.j2"
         style="@style/AppTheme.TextView.subtitle"
         android:paddingLeft="35sp"
@@ -63,7 +63,9 @@
         style="@style/AppTheme.TextView.subtitle"
         android:background="@drawable/dialog_shape"
         android:padding="3dip"
-        />
+        android:enabled="false"
+        android:editable="false"
+        android:allowUndo="false" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Small Text"

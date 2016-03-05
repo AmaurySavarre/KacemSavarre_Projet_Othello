@@ -63,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 };
                 btns[i][j] = btn;
-                btn.setPadding(2,2,2,2);
+                btn.setPadding(0,0,0,0);
                 btn.setId(i * n + j);
                 btn.setLayoutParams(paramsBtn);
                 row.addView(btn);

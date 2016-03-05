@@ -23,7 +23,8 @@
     <string name="Settings.choose_language">Choose a language...</string>
     <!-- Game -->
     <string name="scores">Scores</string>
-    <string name="j1">J1</string>
+    <string name="p1">P1</string>
+    <string name="p2">P2</string>
     <string name="s1">S1</string>
     <string name="s2">S2</string>
 </resources>
