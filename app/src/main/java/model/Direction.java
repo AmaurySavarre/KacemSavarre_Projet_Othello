@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Amaury on 27/02/2016.
+ * Created by Amaury Savarre on 27/02/2016.
  *
  * Class containing all the available and usable directions to play.
  */
@@ -78,7 +78,7 @@ public class Direction
 
     public String toString()
     {
-        String res = new String();
+        String res = "";
 
         switch(this.deltaY)
         {

@@ -2,12 +2,13 @@ package model;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.OthelloController;
 
 /**
- * Created by Amaury on 2/23/2016.
+ * Created by Amaury Savarre on 2/23/2016.
  */
 public class Othello
 {
@@ -20,11 +21,13 @@ public class Othello
 
     /**
      * Othello constructor.
+     *
+     * @param controller The controller used to control the game.
      */
     public Othello(OthelloController controller)
     {
         _controller = controller;
-        _board = new Board();
+        _board = new Board(8);
     }
 
     /**
@@ -78,10 +81,17 @@ public class Othello
             Log.d("catchPossible (" + X + "," + Y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
 
             // We check that the immediate neighbor is a disk of the adversary.
-            if(Xtmp >= 0 && Xtmp < 8 && Ytmp >= 0 && Ytmp  < 8 && !_board.caseEmpty(Xtmp, Ytmp) && _board.getXY(Xtmp, Ytmp).getState() != player)
+            if(Xtmp >= 0 && Xtmp < _board.getSize() &&
+                    Ytmp >= 0 && Ytmp  < _board.getSize() &&
+                    !_board.caseEmpty(Xtmp, Ytmp) &&
+                    _board.getXY(Xtmp, Ytmp).getState() != player)
             {
                 // Then we check if we can find a disk of the player that surrounds the adversary ones.
-                while(direction.getDeltaX() + X >= 0 && direction.getDeltaX() + X < 8 && direction.getDeltaY() + Y >= 0 && direction.getDeltaY() + Y < 8 && !_board.caseEmpty(Xtmp, Ytmp))
+                while(direction.getDeltaX() + X >= 0 &&
+                        direction.getDeltaX() + X < _board.getSize() &&
+                        direction.getDeltaY() + Y >= 0 &&
+                        direction.getDeltaY() + Y < _board.getSize() &&
+                        !_board.caseEmpty(Xtmp, Ytmp))
                 {
                     // We found a player's disk.
                     if(_board.getXY(Xtmp, Ytmp).getState() == player)
@@ -138,7 +148,10 @@ public class Othello
                 Log.d("playAt (" + X + "," + Y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
 
                 // Check that it's still on the board, the case is empty and the case is not occupied by a player's disk.
-                while(Xtmp >= 0 && Xtmp < 8 && Ytmp >= 0 && Ytmp < 8 && !_board.caseEmpty(Xtmp, Ytmp) && _board.getXY(Xtmp, Ytmp).getState() != player)
+                while(Xtmp >= 0 && Xtmp < _board.getSize() &&
+                        Ytmp >= 0 && Ytmp < _board.getSize() &&
+                        !_board.caseEmpty(Xtmp, Ytmp) &&
+                        _board.getXY(Xtmp, Ytmp).getState() != player)
                 {
                     
                     _board.changeXY(player, Xtmp, Ytmp);
@@ -154,6 +167,30 @@ public class Othello
     }
 
     // TODO: 29/02/2016 getListMoves()
+
+    /**
+     * Gives a list of moves available for the player.
+     *
+     * @param player The player who wants a list of moves available.
+     * @return A list of moves available for the player.
+     */
+    public List<Move> getListMoves(int player)
+    {
+        ArrayList<Move> list =  new ArrayList<>();
+
+        for(int y = 0 ; y < _board.getSize() ; y++)
+        {
+            for(int x = 0 ; x < _board.getSize() ; x++)
+            {
+                if(isPlayable(player, x, y))
+                {
+                    list.add(new Move(x, y));
+                }
+            }
+        }
+
+        return list;
+    }
 
     public String toString()
     {

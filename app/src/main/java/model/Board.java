@@ -3,32 +3,41 @@ package model;
 import android.util.Log;
 
 /**
- * Created by Amaury on 2/23/2016.
+ * Created by Amaury Savarre on 2/23/2016.
  */
 public class Board
 {
-    private Case[][] _board;
+    private Case[][] _board;    // Matrix containing all the cases of the board.
+    private int _size;          // Integer representing the size of the board.
 
-    public Board()
+    /**
+     * Board Constructor.
+     *
+     * @param size The size of the board.
+     */
+    public Board(int size)
     {
-        _board = new Case[8][8];
+        _size = size;
+        _board = new Case[_size][_size];
 
-        for(int i = 0 ; i < 8 ; ++i)
+        // Initializing the matrix of cases.
+        for(int i = 0 ; i < _size ; ++i)
         {
-            for(int j = 0 ; j < 8 ; ++j)
+            for(int j = 0 ; j < _size ; ++j)
             {
                 _board[i][j] = new Case();
             }
         }
 
-        changeXY(1, 3, 3);
+        // Placing the 4 first disks.
+        /*changeXY(1, 3, 3);
         changeXY(1, 4, 4);
         changeXY(2, 4, 3);
-        changeXY(2, 3, 4);
+        changeXY(2, 3, 4);*/
 
-        /*for(int i = 0 ; i < 8 ; ++i)
+        for(int i = 0 ; i < _size ; ++i)
         {
-            for(int j = 0 ; j < 8 ; ++j)
+            for(int j = 0 ; j < _size ; ++j)
             {
                 if(j == 0 || i == 0)
                 {
@@ -40,26 +49,50 @@ public class Board
                 }
             }
         }
-        changeXY(0, 3, 3);*/
+        changeXY(0, 3, 3);
     }
 
+    /**
+     * Returns the size of the board.
+     *
+     * @return The size of the board.
+     */
+    public int getSize()
+    {
+        return _size;
+    }
+
+    /**
+     * Changes the state of the case at the specified coordinates.
+     *
+     * @param player The player that change the state of the case.
+     * @param X The X coordinate on the board.
+     * @param Y The Y coordinate on the board.
+     */
     public void changeXY(int player, int X, int Y)
     {
         Log.d("changeXY (" + X + "," + Y + ") player" + player, "IN");
 
-        if(X >= 0 && X < 8 && Y >= 0 && Y < 8)
+        if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
-            _board[Y][X].reverse(player);
+            _board[Y][X].changeState(player);
         }
 
         Log.d("changeXY (" + X + "," + Y + ") player" + player, "OUT");
     }
 
+    /**
+     * Returns the case at the specified coordinates.
+     *
+     * @param X The X coordinate on the board.
+     * @param Y The Y coordinate on the board.
+     * @return The case at the specified coordinates.
+     */
     public Case getXY(int X, int Y)
     {
         Log.d("getXY (" + X + "," + Y + ")", "IN");
 
-        if(X >= 0 && X < 8 && Y >= 0 && Y < 8)
+        if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
             Log.d("getXY (" + X + "," + Y + ")", "OUT -> " + _board[X][Y]);
             return _board[Y][X];
@@ -69,7 +102,16 @@ public class Board
         return null;
     }
 
-    public boolean caseEmpty(int X, int Y) {
+    /**
+     * Checks if the case is empty.
+     *
+     * @param X The X coordinate on the board.
+     * @param Y The Y coordinate on the board.
+     * @return A boolean saying if the case is empty (true) or not (false).
+     */
+    public boolean caseEmpty(int X, int Y)
+    {
+        Log.d("caseEmpty (" + X + "," + Y + ")", "IN");
         Log.d("caseEmpty (" + X + "," + Y + ")", "OUT -> " + _board[X][Y].isEmpty());
         return _board[Y][X].isEmpty();
     }
@@ -79,9 +121,9 @@ public class Board
         String res = new String();
 
         res += "\n";
-        for(int i = 0 ; i < 8 ; ++i)
+        for(int i = 0 ; i < _size ; ++i)
         {
-            for(int j = 0 ; j < 8 ; ++j)
+            for(int j = 0 ; j < _size ; ++j)
             {
                 res += _board[i][j];
                 res += " ";

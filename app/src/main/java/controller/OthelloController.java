@@ -3,7 +3,7 @@ package controller;
 import model.Player;
 
 /**
- * Created by Amaury on 29/02/2016.
+ * Created by Amaury Savarre on 29/02/2016.
  */
 public class OthelloController
 {
