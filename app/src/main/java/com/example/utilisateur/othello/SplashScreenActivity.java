@@ -38,7 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         anim1.reset();
         ImageView l1 = (ImageView) findViewById(R.id.black_disk1);
         l1.clearAnimation();
-        l1.startAnimation(anim);
+        l1.startAnimation(anim1);
        /* anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
         setContentView(R.layout.activity_splash_screen1);
