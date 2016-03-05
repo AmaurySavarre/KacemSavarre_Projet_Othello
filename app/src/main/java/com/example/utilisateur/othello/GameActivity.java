@@ -56,7 +56,7 @@ public class GameActivity extends AppCompatActivity {
                     {
                         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-                        final int height = getMeasuredHeight();
+                        //final int height = getMeasuredHeight();
                         final int width = getMeasuredWidth();
 
                         setMeasuredDimension(width, width);
@@ -87,4 +87,3 @@ public class GameActivity extends AppCompatActivity {
 }
 
 // TODO: 3/2/2016 Changer les ImageButton en Button ou trouver comment ajouter l'image du disk du joueur.
-// TODO: 3/2/2016 Corriger l'affichage des boutons pour qu'ils aient tous la même taille. 
