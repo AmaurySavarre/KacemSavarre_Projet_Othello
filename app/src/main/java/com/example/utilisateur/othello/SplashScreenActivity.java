@@ -20,7 +20,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
-
     //TODO Corriger l'animation pour le layout 1 (apparition de 3 secondes) qui ne fonctionne pas.
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
@@ -33,6 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         anim.reset();
         ImageView iv = (ImageView) findViewById(R.id.black_disk);
         iv.clearAnimation();
+        anim.setDuration(1000);
         iv.startAnimation(anim);
 
         anim = AnimationUtils.loadAnimation(this, R.anim.translate);
