@@ -23,7 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        OthelloController oc = new OthelloController();
+        /*OthelloController oc = new OthelloController();
         Othello o = new Othello(oc);
 
         Log.e("Othello toString", o.toString());
@@ -32,7 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Log.e("Othello toString", "playAt(2, 4)" + o.toString());
 
         TextView t = (TextView) findViewById(R.id.MainMenu_TextView_title);
-        t.setText(o.toString());
+        t.setText(o.toString());*/
     }
 
     public void onPlay(View v)

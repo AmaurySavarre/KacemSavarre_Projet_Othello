@@ -24,10 +24,15 @@ public class Othello
      *
      * @param controller The controller used to control the game.
      */
-    public Othello(OthelloController controller)
+    public Othello(OthelloController controller, int size)
     {
         _controller = controller;
-        _board = new Board(8);
+        _board = new Board(size);
+    }
+
+    public int getBoardSize()
+    {
+        return _board.getSize();
     }
 
     /**
