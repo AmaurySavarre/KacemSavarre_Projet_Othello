@@ -8,6 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.utilisateur.othello.SplashScreenActivity"
+    android:background="@color/background"
     android:id="@+id/splash_layout1">
 
     <ImageView
@@ -19,4 +20,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-</RelativeLayout>
+
+<ImageView
+    android:id="@+id/white_disk"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/white_disk"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true" />
+    </RelativeLayout>
