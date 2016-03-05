@@ -16,8 +16,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/black_disk"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
+        android:layout_toLeftOf="@id/white_disk"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="25sp"
+        />
+
+    <ImageView
+        android:id="@+id/black_disk1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/black_disk"
+        android:layout_toRightOf="@id/white_disk"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="25sp"
+        />
 
 
 <ImageView
@@ -25,7 +37,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:src="@drawable/white_disk"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    android:layout_centerInParent="true"
+
+    />
     </RelativeLayout>

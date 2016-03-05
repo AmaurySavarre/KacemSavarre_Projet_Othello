@@ -29,6 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
+        anim.setDuration(1000);
         ImageView iv = (ImageView) findViewById(R.id.white_disk);
         iv.clearAnimation();
         iv.startAnimation(anim);
