@@ -13,7 +13,7 @@
 
     <TableLayout
         android:id="@+id/Game.TableLayout.board"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_below="@+id/Game.TextView.j2"
