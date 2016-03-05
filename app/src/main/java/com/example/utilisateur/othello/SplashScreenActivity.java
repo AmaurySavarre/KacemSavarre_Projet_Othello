@@ -22,24 +22,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
-    /*tAnimation.setDuration(1000);
-rAnimation.setDuration(1000);
-
-sAnimation.setDuration(500);
-sAnimation.setStartOffset(1000); //offsets at the duration of the first set
-
-tAnimation2.setDuration(500);
-tAnimation2.setStartOffset(1000); //offsets at the duration of the first set
-
-
-//does it matter here who I add first to the animation set?
-//because if I change the order in which i add the animations to the animation set, I get different results
-
-s.addAnimation(rAnimation);
-s.addAnimation(tAnimation);
-s.addAnimation(tAnimation2);
-s.addAnimation(sAnimation);*/
-
     private void StartAnimations() {
         AnimationSet s = new AnimationSet(false);
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
@@ -63,7 +45,7 @@ s.addAnimation(sAnimation);*/
         ImageView l1 = (ImageView) findViewById(R.id.black_disk1);
         l1.clearAnimation();
         l1.startAnimation(anim1);
-        anim1.setDuration(500);
+        anim1.setDuration(5000);
         anim1.setStartOffset(1000);
 
         s.addAnimation(anim);
