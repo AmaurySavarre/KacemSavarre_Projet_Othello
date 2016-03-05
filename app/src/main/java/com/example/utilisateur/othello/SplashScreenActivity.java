@@ -27,13 +27,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         l.clearAnimation();
         l.startAnimation(anim);
 
-       /* anim = AnimationUtils.loadAnimation(this, R.anim.translate);
+       anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
-        ImageView iv = (ImageView) findViewById(R.id.black_disk);
+        ImageView iv = (ImageView) findViewById(R.id.white_disk);
         iv.clearAnimation();
         iv.startAnimation(anim);
 
-        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
+       /* anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
         setContentView(R.layout.activity_splash_screen1);
         RelativeLayout l2 = (RelativeLayout) findViewById(R.id.splash_layout1);
