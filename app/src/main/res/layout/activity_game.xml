@@ -48,13 +48,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="J2"
         android:id="@+id/Game.TextView.j2"
-        android:layout_alignBottom="@+id/Game.TextView.s1"
-        android:layout_toRightOf="@+id/Game.TextView.s1"
         style="@style/AppTheme.TextView.subtitle"
-        android:layout_alignTop="@+id/Game.TextView.j1"
         android:paddingLeft="35sp"
         android:paddingRight="20sp"
-        />
+        android:layout_alignBottom="@+id/Game.TextView.s1"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -70,12 +68,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Small Text"
         android:id="@+id/Game.TextView.s2"
-        android:layout_toRightOf="@+id/Game.TextView.j2"
-        android:layout_alignBottom="@+id/Game.TextView.j2"
         style="@style/AppTheme.TextView.subtitle"
         android:background="@drawable/dialog_shape"
         android:padding="3dip"
-        />
+        android:layout_above="@+id/Game.TableLayout.board"
+        android:layout_toRightOf="@+id/Game.TextView.j2"
+        android:layout_toEndOf="@+id/Game.TextView.j2" />
     <ImageButton
         style="@style/imageButton"
         android:id="@+id/MainMenu.ImageButton.rules"

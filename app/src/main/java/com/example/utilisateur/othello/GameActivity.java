@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
             for (int j=0; j<n; j++){
                 ImageButton btn = new ImageButton(this);
                 btns[i][j] = btn;
-                btn.setPadding(0,0,0, 0);
+                btn.setPadding(0,0,0,0);
                 btn.setId(i * n + j);
                 btn.setLayoutParams(paramsBtn);
                 row.addView(btn);
