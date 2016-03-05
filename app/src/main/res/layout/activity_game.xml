@@ -22,6 +22,7 @@
         android:layout_marginTop="10sp"
         android:columnCount="8"
         android:rowCount="8"
+        android:layout_margin="5sp"
         />
 
     <TextView
