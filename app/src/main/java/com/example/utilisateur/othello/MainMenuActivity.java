@@ -23,8 +23,9 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        /*OthelloController oc = new OthelloController();
-        Othello o = new Othello(oc);
+        /*OthelloController oc = new OthelloController(this, 8);
+        Othello o = new Othello(oc, 8);
+        o.initializeBoard();
 
         Log.e("Othello toString", o.toString());
         Log.d("Othello", "playAt(2, 4)");

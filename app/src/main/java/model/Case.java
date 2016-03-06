@@ -1,9 +1,11 @@
 package model;
 
+import java.util.Observable;
+
 /**
  * Created by Amaury Savarre on 2/23/2016.
  */
-public class Case
+public class Case extends Observable
 {
     public enum State {
         EMPTY,
@@ -61,6 +63,8 @@ public class Case
                 _state = State.EMPTY;
                 break;
         }
+        setChanged();
+        notifyObservers(_state);
 
     }
 

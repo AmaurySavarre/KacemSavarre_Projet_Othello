@@ -19,7 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         StartAnimations();
 
         Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
-        //startActivity(intent);
+        startActivity(intent);
     }
 
     private void StartAnimations() {

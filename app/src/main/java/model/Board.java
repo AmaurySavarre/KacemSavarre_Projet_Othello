@@ -28,28 +28,6 @@ public class Board
                 _board[i][j] = new Case();
             }
         }
-
-        // Placing the 4 first disks.
-        /*changeXY(1, 3, 3);
-        changeXY(1, 4, 4);
-        changeXY(2, 4, 3);
-        changeXY(2, 3, 4);*/
-
-        for(int i = 0 ; i < _size ; ++i)
-        {
-            for(int j = 0 ; j < _size ; ++j)
-            {
-                if(j == 0 || i == 0)
-                {
-                    changeXY(1, i, j);
-                }
-                else
-                {
-                    changeXY(2, i, j);
-                }
-            }
-        }
-        changeXY(0, 3, 3);
     }
 
     /**
@@ -60,6 +38,31 @@ public class Board
     public int getSize()
     {
         return _size;
+    }
+
+    public void initializeCases()
+    {
+        // Placing the 4 first disks.
+        changeXY(1, 3, 3);
+        changeXY(1, 4, 4);
+        changeXY(2, 4, 3);
+        changeXY(2, 3, 4);
+
+        /*for(int y = 0 ; y < _size ; ++y)
+        {
+            for(int x = 0 ; x < _size ; ++x)
+            {
+                if(x == 0 || y == 0)
+                {
+                    changeXY(1, x, y);
+                }
+                else
+                {
+                    changeXY(2, x, y);
+                }
+            }
+        }
+        changeXY(0, 5, 3);*/
     }
 
     /**

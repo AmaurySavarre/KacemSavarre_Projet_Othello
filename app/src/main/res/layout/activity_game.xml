@@ -16,12 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below="@+id/Game.TextView.j2"
+        android:layout_below="@+id/Game.TextView.p2"
         android:layout_above="@+id/MainMenu.ImageButton.rules"
         android:background="@color/background"
         android:layout_marginTop="10sp"
-        android:columnCount="8"
-        android:rowCount="8"
         />
 
     <TextView
@@ -36,7 +34,7 @@
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/p1"
-        android:id="@+id/Game.TextView.j1"
+        android:id="@+id/Game.TextView.p1"
         android:layout_below="@+id/Game.TextView.scores"
         style="@style/AppTheme.TextView.subtitle"
         android:layout_alignParentLeft="true"
@@ -47,7 +45,7 @@
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/p2"
-        android:id="@+id/Game.TextView.j2"
+        android:id="@+id/Game.TextView.p2"
         style="@style/AppTheme.TextView.subtitle"
         android:paddingLeft="35sp"
         android:paddingRight="20sp"
@@ -58,8 +56,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Small Text"
         android:id="@+id/Game.TextView.s1"
-        android:layout_toRightOf="@id/Game.TextView.j1"
-        android:layout_alignBottom="@+id/Game.TextView.j1"
+        android:layout_toRightOf="@id/Game.TextView.p1"
+        android:layout_alignBottom="@+id/Game.TextView.p1"
         style="@style/AppTheme.TextView.subtitle"
         android:background="@drawable/dialog_shape"
         android:padding="3dip"
@@ -74,8 +72,8 @@
         android:background="@drawable/dialog_shape"
         android:padding="3dip"
         android:layout_above="@+id/Game.TableLayout.board"
-        android:layout_toRightOf="@+id/Game.TextView.j2"
-        android:layout_toEndOf="@+id/Game.TextView.j2" />
+        android:layout_toRightOf="@+id/Game.TextView.p2"
+        android:layout_toEndOf="@+id/Game.TextView.p2" />
     <ImageButton
         style="@style/imageButton"
         android:id="@+id/MainMenu.ImageButton.rules"
