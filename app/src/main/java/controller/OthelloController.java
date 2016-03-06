@@ -24,12 +24,12 @@ public class OthelloController
 
     public OthelloController(Activity view, int size)
     {
-        _player1 = new PlayerHuman(1);
-        _player2 = new PlayerHuman(2);
-        _actual_player = _player1;
-
         _othello = new Othello(this, size);
         _view = view;
+
+        _player1 = new PlayerHuman(_othello, 1);
+        _player2 = new PlayerHuman(_othello, 2);
+        _actual_player = _player1;
 
         _listener = new View.OnClickListener() {
             @Override
@@ -43,7 +43,8 @@ public class OthelloController
                     turn(i,j);
                 }*/
 
-                _othello.playAt(_actual_player.getNumber(), x, y);
+                getActualPlayer().play(x, y);
+                //_othello.playAt(_actual_player.getNumber(), x, y);
 
                 Toast.makeText(_view.getApplicationContext(), "Case " + x + "x" + y, Toast.LENGTH_SHORT).show();
             }

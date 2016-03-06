@@ -6,14 +6,16 @@ package model;
 public class PlayerHuman implements Player
 {
     private int _number;
+    private Othello _othello;
 
     public int getNumber()
     {
         return _number;
     }
 
-    public PlayerHuman(int number)
+    public PlayerHuman(Othello othello,int number)
     {
+        _othello = othello;
         _number = number;
     }
 
