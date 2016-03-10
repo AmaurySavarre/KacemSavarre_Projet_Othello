@@ -21,10 +21,17 @@
     <string name="Settings.colors">Colors :</string>
     <string name="Settings.music">Music :</string>
     <string name="Settings.choose_language">Choose a language...</string>
+
     <!-- Game -->
     <string name="scores">Scores</string>
-    <string name="p1">P1</string>
-    <string name="p2">P2</string>
+    <string name="p1">Player 1</string>
+    <string name="p2">Player 2</string>
     <string name="s1">S1</string>
     <string name="s2">S2</string>
+    <string name="Game.turn_description">Player\'s turn</string>
+    <string name="Game.rules_description">Button to show the rules</string>
+    <string name="Game.home_description">Button to get back to the main menu</string>
+    <string name="Game.settings_description">Button to open the setting menu</string>
+    <string name="Game.player1_description">Image of the player 1 disk</string>
+    <string name="Game.player2_description">Image of the player 2 disk</string>
 </resources>

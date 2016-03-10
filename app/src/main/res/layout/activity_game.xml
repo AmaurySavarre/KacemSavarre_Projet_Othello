@@ -4,23 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.utilisateur.othello.GameActivity"
     android:background="@color/background_main">
-
-    <TableLayout
-        android:id="@+id/Game.TableLayout.board"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/Game.TextView.p2"
-        android:layout_above="@+id/MainMenu.ImageButton.rules"
-        android:background="@color/background"
-        android:layout_marginTop="10sp"
-        />
 
     <TextView
         style="@style/AppTheme.TextView.subtitle"
@@ -29,66 +14,175 @@
         android:id="@+id/Game.TextView.scores"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingBottom="15sp"/>
-
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/p1"
-        android:id="@+id/Game.TextView.p1"
-        android:layout_below="@+id/Game.TextView.scores"
-        style="@style/AppTheme.TextView.subtitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingRight="20sp"
+        android:paddingStart="10sp"
+        android:paddingEnd="0sp"
+        android:paddingRight="10sp"
+        android:paddingLeft="0sp"
         />
 
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/p2"
-        android:id="@+id/Game.TextView.p2"
-        style="@style/AppTheme.TextView.subtitle"
-        android:paddingLeft="35sp"
-        android:paddingRight="20sp"
-        android:layout_alignBottom="@+id/Game.TextView.s1"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:id="@+id/Game.LinearLayout.scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/Game.TextView.scores"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:gravity="center">
 
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Small Text"
-        android:id="@+id/Game.TextView.s1"
-        android:layout_toRightOf="@id/Game.TextView.p1"
-        android:layout_alignBottom="@+id/Game.TextView.p1"
-        style="@style/AppTheme.TextView.subtitle"
-        android:background="@drawable/dialog_shape"
-        android:padding="3dip"
-        android:enabled="false"
-        android:editable="false"
-        android:allowUndo="false" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Small Text"
-        android:id="@+id/Game.TextView.s2"
-        style="@style/AppTheme.TextView.subtitle"
-        android:background="@drawable/dialog_shape"
-        android:padding="3dip"
-        android:layout_above="@+id/Game.TableLayout.board"
-        android:layout_toRightOf="@+id/Game.TextView.p2"
-        android:layout_toEndOf="@+id/Game.TextView.p2" />
-    <ImageButton
-        style="@style/imageButton"
-        android:id="@+id/MainMenu.ImageButton.rules"
-        android:src="@drawable/ic_help_outline_black_48dp"
+        <TextView
+            style="@style/AppTheme.TextView.subtitle"
+            android:id="@+id/Game.TextView.s1"
+            android:text=""
+            android:textSize="@dimen/Text.tiny"
+            android:background="@drawable/dialog_shape"
+            android:layout_weight="1"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:paddingEnd="10sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            />
+
+        <TextView
+            style="@style/AppTheme.TextView.subtitle"
+            android:id="@+id/Game.TextView.p1"
+            android:text="@string/p1"
+            android:textSize="@dimen/Text.tiny"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:paddingStart="10sp"
+            android:paddingEnd="0sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="0sp"
+            />
+
+        <ImageView
+            android:id="@+id/Game.ImageView.turn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/Game.turn_description"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            style="@style/AppTheme.TextView.subtitle"
+            android:id="@+id/Game.TextView.p2"
+            android:text="@string/p2"
+            android:textSize="@dimen/Text.tiny"
+            android:layout_weight="2"
+            android:gravity="end"
+            android:paddingStart="0sp"
+            android:paddingEnd="10sp"
+            android:paddingLeft="0sp"
+            android:paddingRight="10sp"
+            />
+
+        <TextView
+            style="@style/AppTheme.TextView.subtitle"
+            android:id="@+id/Game.TextView.s2"
+            android:text=""
+            android:textSize="@dimen/Text.tiny"
+            android:background="@drawable/dialog_shape"
+            android:layout_weight="1"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:paddingEnd="10sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            />
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:id="@+id/Game.LinearLayout.turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10sp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/Game.LinearLayout.scores"
+        >
+        <ImageView
+            android:id="@+id/Game.ImageView.player1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/Game.player1_description"
+            android:layout_weight="1"
+            android:layout_gravity="end"
+            />
+
+        <ImageView
+            android:id="@+id/Game.ImageView.turn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/Game.turn_description"
+            android:src="@drawable/ic_arrow_back_black_48dp"
+            android:layout_weight="2"
+            />
+
+        <ImageView
+            android:id="@+id/Game.ImageView.player2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/Game.player2_description"
+            android:layout_weight="1"
+            android:layout_gravity="start"
+            />
+    </LinearLayout>-->
+
+    <TableLayout
+        android:id="@+id/Game.TableLayout.board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/board_shape"
+        android:layout_margin="10sp"
+        android:layout_below="@+id/Game.LinearLayout.scores"
+        />
+
+    <LinearLayout
+        android:id="@+id/Game.LinearLayout.buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onRules" />
-    <ImageButton
-        style="@style/imageButton"
-        android:id="@+id/imageButton3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="#00ffffff"
-        android:src="@drawable/ic_arrow_back_black_48dp"
-        android:onClick="onBack" />
+        android:gravity="center">
+
+        <ImageButton
+            style="@style/imageButton"
+            android:id="@+id/MainMenu.ImageButton.rules"
+            android:src="@drawable/ic_help_outline_black_48dp"
+            android:contentDescription="@string/Game.rules_description"
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            style="@style/imageButton"
+            android:id="@+id/imageButton3"
+            android:src="@drawable/ic_home_black_48dp"
+            android:contentDescription="@string/Game.home_description"
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            style="@style/imageButton"
+            android:id="@+id/MainMenu.ImageButton.settings"
+            android:src="@drawable/ic_settings_black_48dp"
+            android:contentDescription="@string/Game.settings_description"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
 

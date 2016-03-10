@@ -40,6 +40,8 @@ public class OthelloController
 
         _waiting = true;
 
+        //_view.setImagePlayer(_player1, _player2);
+
         _listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +125,8 @@ public class OthelloController
         {
             _actual_player = _player1;
         }
+
+        _view.setTurn(_actual_player);
     }
 
     public void startGame()

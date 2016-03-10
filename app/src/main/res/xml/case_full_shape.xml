@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <size
+                android:height="55sp"
+                android:width="55sp"
+                />
+            <solid
+                android:color="@android:color/transparent"
+                />
+
+            <stroke
+                android:width="1sp"
+                android:color="@android:color/black"
+                />
+        </shape>
+    </item>
+    <item
+        android:start="3sp"
+        android:left="3sp"
+        android:end="3sp"
+        android:right="3sp"
+        android:top="3sp"
+        android:bottom="3sp"
+        android:drawable="@xml/disc_shape"
+        />
+</layer-list>

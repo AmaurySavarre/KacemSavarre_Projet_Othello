@@ -7,18 +7,12 @@
                 android:width="50sp"
                 />
 
-            <gradient
-                android:type="radial"
-                android:centerX="90%"
-                android:centerY="10%"
-                android:startColor="@android:color/darker_gray"
-                android:centerColor="@android:color/black"
-                android:endColor="@android:color/black"
-                android:gradientRadius="75"
+            <solid
+                android:color="@android:color/white"
                 />
             <stroke
                 android:color="@android:color/black"
-                android:dashWidth="2sp"
+                android:width="1sp"
                 />
         </shape>
     </item>

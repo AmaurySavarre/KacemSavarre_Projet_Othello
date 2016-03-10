@@ -46,8 +46,8 @@ public class CaseButton extends Button implements Observer
             try
             {
                 Resources res = getResources();
-                Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape1));
-                Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape2));
+                Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+                Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
                 player2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
                 switch ((Case.State) data)

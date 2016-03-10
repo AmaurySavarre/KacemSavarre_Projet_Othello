@@ -2,13 +2,17 @@ package com.example.utilisateur.othello;
 
 import android.app.ActionBar;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -22,6 +26,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 
 import controller.OthelloController;
+import model.Case;
+import model.Player;
 
 public class GameActivity extends AppCompatActivity {
     private LinearLayout grid_layout;
@@ -31,6 +37,10 @@ public class GameActivity extends AppCompatActivity {
 
     private TextView _scorePlayer1;
     private TextView _scorePlayer2;
+    //private ImageView _imagePlayer1;
+    //private ImageView _imagePlayer2;
+
+    private ImageView _turn;
 
     private OthelloController _controller;
 
@@ -44,12 +54,17 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        _controller = new OthelloController(this, 8);
-
         _scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
         _scorePlayer2 = (TextView) findViewById(R.id.Game_TextView_s2);
+        //_imagePlayer1 = (ImageView) findViewById(R.id.Game_ImageView_player1);
+        //_imagePlayer2 = (ImageView) findViewById(R.id.Game_ImageView_player2);
+
+        _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
 
         table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
+
+        _controller = new OthelloController(this, 8);
+
         createButtons();
 
         _controller.initializeGame();
@@ -110,6 +125,51 @@ public class GameActivity extends AppCompatActivity {
     {
         _scorePlayer1.setText(String.valueOf(scorePlayer1));
         _scorePlayer2.setText(String.valueOf(scorePlayer2));
+    }
+
+    public void setTurn(Player player)
+    {
+        try
+        {
+            Resources res = getResources();
+            Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
+            Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
+            p2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+
+            switch (player.getNumber())
+            {
+                case 1 :
+                    _turn.setImageDrawable(p1);
+                    break;
+                case 2:
+                    _turn.setImageDrawable(p2);
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            Log.e("update", e.getMessage());
+        }
+    }
+
+    public void setImagePlayer(Player player1, Player player2)
+    {
+        try
+        {
+            Resources res = getResources();
+            Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            p2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+
+            //_imagePlayer1.setImageDrawable(p1);
+            //_imagePlayer2.setImageDrawable(p2);
+        }
+        catch (Exception e)
+        {
+            Log.e("update", e.getMessage());
+        }
     }
 }
 
