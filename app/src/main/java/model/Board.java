@@ -43,10 +43,10 @@ public class Board
     public void initializeCases()
     {
         // Placing the 4 first disks.
-        changeXY(1, 3, 3);
-        changeXY(1, 4, 4);
-        changeXY(2, 4, 3);
-        changeXY(2, 3, 4);
+        changeXY(1, (_size/2 - 1), (_size/2 - 1));
+        changeXY(1, (_size/2), (_size/2));
+        changeXY(2, (_size/2), (_size/2 - 1));
+        changeXY(2, (_size/2 - 1), (_size/2));
 
         /*for(int y = 0 ; y < _size ; ++y)
         {
@@ -74,14 +74,14 @@ public class Board
      */
     public void changeXY(int player, int X, int Y)
     {
-        Log.d("changeXY (" + X + "," + Y + ") player" + player, "IN");
+        //Log.d("changeXY (" + X + "," + Y + ") player" + player, "IN");
 
         if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
             _board[Y][X].changeState(player);
         }
 
-        Log.d("changeXY (" + X + "," + Y + ") player" + player, "OUT");
+        //Log.d("changeXY (" + X + "," + Y + ") player" + player, "OUT");
     }
 
     /**
@@ -93,15 +93,15 @@ public class Board
      */
     public Case getXY(int X, int Y)
     {
-        Log.d("getXY (" + X + "," + Y + ")", "IN");
+        //Log.d("getXY (" + X + "," + Y + ")", "IN");
 
         if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
-            Log.d("getXY (" + X + "," + Y + ")", "OUT -> " + _board[X][Y]);
+            //Log.d("getXY (" + X + "," + Y + ")", "OUT -> " + _board[X][Y]);
             return _board[Y][X];
         }
 
-        Log.d("getXY (" + X + "," + Y + ")", "OUT -> null");
+        //Log.d("getXY (" + X + "," + Y + ")", "OUT -> null");
         return null;
     }
 
@@ -114,8 +114,8 @@ public class Board
      */
     public boolean caseEmpty(int X, int Y)
     {
-        Log.d("caseEmpty (" + X + "," + Y + ")", "IN");
-        Log.d("caseEmpty (" + X + "," + Y + ")", "OUT -> " + _board[X][Y].isEmpty());
+        //Log.d("caseEmpty (" + X + "," + Y + ")", "IN");
+        //Log.d("caseEmpty (" + X + "," + Y + ")", "OUT -> " + _board[X][Y].isEmpty());
         return _board[Y][X].isEmpty();
     }
 

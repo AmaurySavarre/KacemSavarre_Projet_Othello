@@ -1,6 +1,7 @@
 package com.example.utilisateur.othello;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -9,6 +10,7 @@ import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,7 +34,7 @@ import model.Player;
 public class GameActivity extends AppCompatActivity {
     private LinearLayout grid_layout;
     private TableLayout table;
-    private int n=8;
+    //private int n;
     private CaseButton[][] btns;
 
     private TextView _scorePlayer1;
@@ -63,16 +65,19 @@ public class GameActivity extends AppCompatActivity {
 
         table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
 
-        _controller = new OthelloController(this, 8);
+        _controller = new OthelloController(this, 4);
 
         createButtons();
 
         _controller.initializeGame();
+        _controller.start();
     }
 
 
     private void createButtons()
     {
+        int n = _controller.getBoardSize();
+
         table.removeAllViews();
         table.setStretchAllColumns(true);
 
@@ -101,7 +106,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     //initialiser les images avec l'image vide
-    public void setButtons(){
+    public void setButtons()
+    {
+        int n = _controller.getBoardSize();
+
         try
         {
             Resources res = getResources();
@@ -171,6 +179,12 @@ public class GameActivity extends AppCompatActivity {
             Log.e("update", e.getMessage());
         }
     }
-}
 
-// TODO: 3/2/2016 Changer les ImageButton en Button ou trouver comment ajouter l'image du disk du joueur.
+    public void onSettings(View v)
+    {
+        Toast.makeText(getApplicationContext(), "onSettings()", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(GameActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
+}

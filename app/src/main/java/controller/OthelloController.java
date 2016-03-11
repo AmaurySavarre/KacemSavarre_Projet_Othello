@@ -2,6 +2,7 @@ package controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import model.PlayerHuman;
 /**
  * Created by Amaury Savarre on 29/02/2016.
  */
-public class OthelloController
+public class OthelloController extends Thread
 {
     private Player _player1;
     private Player _player2;
@@ -54,17 +55,12 @@ public class OthelloController
                     turn(i,j);
                 }*/
 
-                /*if(compareAndSetWaitin(true, false))
+                if(compareAndSetWaitin(true, false))
                 {
                     getActualPlayer().playAt(x, y);
-                }*/
-                if(_othello.playAt(_actual_player.getNumber(), x, y))
-                {
-                    changePlayer();
-                    _view.updateScores(_othello.getScore(1), _othello.getScore(2));
+                    compareAndSetWaitin(false, true);
                 }
-
-                //Toast.makeText(_view.getApplicationContext(), "Case " + x + "x" + y, Toast.LENGTH_SHORT).show();
+                //_actual_player.playAt(x, y);
             }
         };
     }
@@ -84,10 +80,14 @@ public class OthelloController
         return _player2;
     }
 
-    // TODO: 29/02/2016 getActualPlayer()
     public Player getActualPlayer()
     {
         return _actual_player;
+    }
+
+    public int getBoardSize()
+    {
+        return _othello.getBoardSize();
     }
 
     public CaseButton createButton(Context context, int x, int y)
@@ -101,6 +101,8 @@ public class OthelloController
     public void initializeGame()
     {
         _othello.initializeBoard();
+        _view.updateScores(_othello.getScore(1), _othello.getScore(2));
+        _view.setTurn(_actual_player);
     }
 
     public boolean compareAndSetWaitin(boolean compare, boolean set)
@@ -114,7 +116,6 @@ public class OthelloController
         return false;
     }
 
-    // TODO: 29/02/2016 changePlayer()
     public void changePlayer()
     {
         if(_actual_player == _player1)
@@ -126,20 +127,64 @@ public class OthelloController
             _actual_player = _player1;
         }
 
-        _view.setTurn(_actual_player);
+
+        _view.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                _view.setTurn(_actual_player);
+            }
+        });
     }
 
-    public void startGame()
+    public void changeScores(int scorePlayer1, int scorePlayer2)
+    {
+        _view.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                _view.updateScores(_othello.getScore(_player1.getNumber()), _othello.getScore(_player2.getNumber()));
+            }
+        });
+    }
+
+    public void launchToast(final String toast)
+    {
+        _view.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(_view.getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void run()
     {
         while(!_othello.gameOver())
         {
             if(!_othello.getListMoves(_actual_player.getNumber()).isEmpty())
             {
+                Log.e("run", "1");
                 _actual_player.play();
-                compareAndSetWaitin(false, true);
+                Log.e("run", "2");
+                //compareAndSetWaitin(false, true);
+                Log.e("run", "3");
             }
+            else
+            {
+                // Advert player that he can't play.
+                Log.e("run", "4");
+                launchToast("Ne peut pas jouer");
+                // TODO: 11/03/2016 Prévenir le joueur qu'il ne peut pas jouer.
+            }
+
+            Log.e("run", "Pre");
+            changeScores(_othello.getScore(1), _othello.getScore(2));
             changePlayer();
+            Log.e("run", "Post");
         }
+
+        // TODO: 11/03/2016 Gérer la fin de partie.
+        Log.e("run", "Finish");
+        launchToast("Partie finie !");
     }
 
     public void setCaseObserver(int x, int y, Observer o)
@@ -147,5 +192,4 @@ public class OthelloController
         _othello.getCase(x, y).addObserver(o);
     }
 
-    // TODO: 29/02/2016 Listener to treat onClick action from GameActivity buttons.
 }

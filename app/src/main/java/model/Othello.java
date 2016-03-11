@@ -55,15 +55,15 @@ public class Othello
      */
     public boolean isPlayable(int player, int X, int Y)
     {
-        Log.d("isPlayable (" + X + "," + Y + ")", "IN");
+        //Log.d("isPlayable (" + X + "," + Y + ")", "IN");
         // Check if the case is empty and the player can make a catch at this coordinates.
         if(_board.caseEmpty(X, Y) && this.catchPossible(player, X, Y))
         {
-            Log.d("isPlayable (" + X + "," + Y + ")", "OUT -> true");
+            //Log.d("isPlayable (" + X + "," + Y + ")", "OUT -> true");
             return true;
         }
 
-        Log.d("isPlayable (" + X + "," + Y + ")", "OUT -> false");
+        //Log.d("isPlayable (" + X + "," + Y + ")", "OUT -> false");
         return false;
     }
 
@@ -77,7 +77,7 @@ public class Othello
      */
     public boolean catchPossible(int player, int x, int y)
     {
-        Log.d("catchPossible (" + x + "," + y + ")", "IN");
+        //Log.d("catchPossible (" + x + "," + y + ")", "IN");
         // Get an iterator on the list of directions.
         //Iterator<Direction> ite = Direction.getListDirections().iterator();
         // Get the list of all directions.
@@ -88,18 +88,18 @@ public class Othello
         for(Direction direction : directions)
         {
             //Direction direction = ite.next();
-            Log.d("catchPossible (" + x + "," + y + ")", "dir -> " + direction);
+            //Log.d("catchPossible (" + x + "," + y + ")", "dir -> " + direction);
 
             if(catchInDirection(player, x, y, direction))
             {
-                Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
+                //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
                 return true;
             }
 
             /*// We temporarily move the X and Y.
             int Xtmp = x + direction.getDeltaX();
             int Ytmp = y + direction.getDeltaY();
-            Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+            //Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
 
             // We check that the immediate neighbor is a disk of the adversary.
             if(Xtmp >= 0 && Xtmp < _board.getSize() &&
@@ -117,19 +117,19 @@ public class Othello
                     // We found a player's disk.
                     if(_board.getXY(Xtmp, Ytmp).getState() == player)
                     {
-                        Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
+                        //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
                         return true;
                     }
 
                     // We temporarily move the X and Y to continue in the same direction.
                     Xtmp = Xtmp + direction.getDeltaX();
                     Ytmp = Ytmp + direction.getDeltaY();
-                    Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+                    //Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
                 }
             }*/
         }
 
-        Log.d("catchPossible (" + x + "," + y + ")", "OUT -> false");
+        //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> false");
         // No catch possible.
         return false;
     }
@@ -139,7 +139,7 @@ public class Othello
         // We temporarily move the X and Y.
         int Xtmp = x + direction.getDeltaX();
         int Ytmp = y + direction.getDeltaY();
-        Log.d("catchInDirection (" + x + "," + y + ")", "IN : Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+        //Log.d("catchInDirection (" + x + "," + y + ")", "IN : Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
 
         // We check that the immediate neighbor is a disk of the adversary.
         if(Xtmp >= 0 && Xtmp < _board.getSize() &&
@@ -157,18 +157,18 @@ public class Othello
                 // We found a player's disk.
                 if(_board.getXY(Xtmp, Ytmp).getState() == player)
                 {
-                    Log.d("catchInDirection (" + x + "," + y + ")", "OUT -> true");
+                    //Log.d("catchInDirection (" + x + "," + y + ")", "OUT -> true");
                     return true;
                 }
 
                 // We temporarily move the X and Y to continue in the same direction.
                 Xtmp = Xtmp + direction.getDeltaX();
                 Ytmp = Ytmp + direction.getDeltaY();
-                Log.d("catchInDirection (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+                //Log.d("catchInDirection (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
             }
         }
 
-        Log.d("catchInDirection (" + x + "," + y + ")", "OUT -> false");
+        //Log.d("catchInDirection (" + x + "," + y + ")", "OUT -> false");
         return false;
     }
 
@@ -181,7 +181,7 @@ public class Othello
      */
     public boolean playAt(int player, int x, int y)
     {
-        Log.d("playAt (" + x + "," + y + ")", "IN");
+        //Log.d("playAt (" + x + "," + y + ")", "IN");
 
         // Check if the player is able to play here.
         if(this.isPlayable(player, x, y))
@@ -201,12 +201,12 @@ public class Othello
                 if(catchInDirection(player, x, y, direction))
                 {
                     //Direction direction = ite.next();
-                    Log.d("playAt (" + x + "," + y + ")", "dir -> " + direction);
+                    //Log.d("playAt (" + x + "," + y + ")", "dir -> " + direction);
 
                     // Move temporarily the X and Y.
                     int Xtmp = x + direction.getDeltaX();
                     int Ytmp = y + direction.getDeltaY();
-                    Log.d("playAt (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+                    //Log.d("playAt (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
 
                     // Check that it's still on the board, the case is empty and the case is not occupied by a player's disk.
                     while(Xtmp >= 0 && Xtmp < _board.getSize() &&
@@ -219,18 +219,17 @@ public class Othello
 
                         Xtmp = Xtmp + direction.getDeltaX();
                         Ytmp = Ytmp + direction.getDeltaY();
-                        Log.d("playAt (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
+                        //Log.d("playAt (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
                     }
                 }
             }
             return true;
         }
 
-        Log.d("playAt (" + x + "," + y + ")", "OUT");
+        //Log.d("playAt (" + x + "," + y + ")", "OUT");
         return false;
     }
 
-    // TODO: 29/02/2016 getListMoves()
 
     /**
      * Gives a list of moves available for the player.

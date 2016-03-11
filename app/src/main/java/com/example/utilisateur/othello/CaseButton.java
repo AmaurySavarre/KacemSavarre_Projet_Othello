@@ -39,10 +39,11 @@ public class CaseButton extends Button implements Observer
     @Override
     public void update(Observable observable, Object data)
     {
-        Log.d("update", "IN");
+        /// TODO: 11/03/2016 Animation de retournement du pion.
+        //Log.d("update", "IN");
         if(observable == _case)
         {
-            Log.d("update", "IN2");
+            //Log.d("update", "IN2");
             try
             {
                 Resources res = getResources();
