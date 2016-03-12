@@ -30,6 +30,21 @@ public class Board
         }
     }
 
+    public Board(Board board)
+    {
+        _size = board._size;
+        _board = new Case[_size][_size];
+
+        // Initializing the matrix of cases.
+        for(int i = 0 ; i < _size ; ++i)
+        {
+            for(int j = 0 ; j < _size ; ++j)
+            {
+                _board[i][j] = new Case(board._board[i][j]);
+            }
+        }
+    }
+
     /**
      * Returns the size of the board.
      *
@@ -40,13 +55,13 @@ public class Board
         return _size;
     }
 
-    public void initializeCases()
+    public void initializeCases(Player player1, Player player2)
     {
         // Placing the 4 first disks.
-        changeXY(1, (_size/2 - 1), (_size/2 - 1));
-        changeXY(1, (_size/2), (_size/2));
-        changeXY(2, (_size/2), (_size/2 - 1));
-        changeXY(2, (_size/2 - 1), (_size/2));
+        changeXY(player1, (_size/2 - 1), (_size/2 - 1));
+        changeXY(player1, (_size/2), (_size/2));
+        changeXY(player2, (_size/2), (_size/2 - 1));
+        changeXY(player2, (_size/2 - 1), (_size/2));
 
         /*for(int y = 0 ; y < _size ; ++y)
         {
@@ -72,7 +87,7 @@ public class Board
      * @param X The X coordinate on the board.
      * @param Y The Y coordinate on the board.
      */
-    public void changeXY(int player, int X, int Y)
+    public void changeXY(Player player, int X, int Y)
     {
         //Log.d("changeXY (" + X + "," + Y + ") player" + player, "IN");
 

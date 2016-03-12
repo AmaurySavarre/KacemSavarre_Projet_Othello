@@ -5,26 +5,21 @@ import android.util.Log;
 /**
  * Created by Amaury on 27/02/2016.
  */
-public class PlayerHuman implements Player
+public class PlayerHuman extends Player
 {
-    private int _number;
-    private Othello _othello;
-    private boolean _hasPlayed;
-
-    public int getNumber()
-    {
-        return _number;
-    }
+    private boolean _isPlaying;
 
     public PlayerHuman(Othello othello,int number)
     {
-        _othello = othello;
-        _number = number;
-        _hasPlayed = false;
+        super(othello, number);
+
+        _isPlaying = false;
     }
 
     public void play()
     {
+        _isPlaying = true;
+
         while (!_hasPlayed)
         {
             try
@@ -42,10 +37,11 @@ public class PlayerHuman implements Player
 
     public void playAt(int x, int y)
     {
-        if(_othello.isPlayable(_number, x, y))
+        if(_isPlaying && _othello.isPlayable(this, x, y))
         {
-            _othello.playAt(_number, x, y);
+            _othello.playAt(this, x, y);
             _hasPlayed = true;
+            _isPlaying = false;
         }
     }
 }

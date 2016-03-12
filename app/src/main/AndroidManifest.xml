@@ -35,7 +35,11 @@
             android:label="@string/Settings.label"
             android:theme="@style/AppTheme.Dialog" >
         </activity>
-        <activity android:name=".GameActivity" >
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/Game.label"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
         </activity>
     </application>
 

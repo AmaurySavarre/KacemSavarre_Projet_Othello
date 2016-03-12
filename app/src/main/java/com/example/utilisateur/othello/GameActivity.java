@@ -1,56 +1,42 @@
 package com.example.utilisateur.othello;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-
 import controller.OthelloController;
-import model.Case;
+import model.Board;
 import model.Player;
+import model.State;
 
-public class GameActivity extends AppCompatActivity {
-    private LinearLayout grid_layout;
+public class GameActivity extends AppCompatActivity
+{
     private TableLayout table;
-    //private int n;
     private CaseButton[][] btns;
 
     private TextView _scorePlayer1;
     private TextView _scorePlayer2;
-    //private ImageView _imagePlayer1;
-    //private ImageView _imagePlayer2;
 
     private ImageView _turn;
 
     private OthelloController _controller;
 
-    @Override
-    /*protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);}*/
+    private boolean _scoresUpdated;
+    private boolean _turnUpdated;
+    private boolean _boardUpdated;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -58,14 +44,16 @@ public class GameActivity extends AppCompatActivity {
 
         _scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
         _scorePlayer2 = (TextView) findViewById(R.id.Game_TextView_s2);
-        //_imagePlayer1 = (ImageView) findViewById(R.id.Game_ImageView_player1);
-        //_imagePlayer2 = (ImageView) findViewById(R.id.Game_ImageView_player2);
 
         _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
 
         table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
 
-        _controller = new OthelloController(this, 4);
+        _scoresUpdated = true;
+        _turnUpdated = true;
+        _boardUpdated = true;
+
+        _controller = new OthelloController(this, 8);
 
         createButtons();
 
@@ -119,7 +107,6 @@ public class GameActivity extends AppCompatActivity {
                 for (int x=0; x<n; x++)
                 {
                     (btns[y][x]).setBackground(Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape)));
-                    //(btns[i][j]).setBackgroundResource(R.drawable.black_disk);
                 }
             }
         }
@@ -131,18 +118,24 @@ public class GameActivity extends AppCompatActivity {
 
     public void updateScores(int scorePlayer1, int scorePlayer2)
     {
+        _scoresUpdated = false;
+
         _scorePlayer1.setText(String.valueOf(scorePlayer1));
         _scorePlayer2.setText(String.valueOf(scorePlayer2));
+
+        _scoresUpdated = true;
     }
 
-    public void setTurn(Player player)
+    public void updateTurn(Player player)
     {
+        _turnUpdated = false;
+
         try
         {
             Resources res = getResources();
             Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
             Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
-            p2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+            p2.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
             switch (player.getNumber())
             {
@@ -160,24 +153,52 @@ public class GameActivity extends AppCompatActivity {
         {
             Log.e("update", e.getMessage());
         }
+
+        _turnUpdated = true;
     }
 
-    public void setImagePlayer(Player player1, Player player2)
+    public void updateButton(final Board board)
     {
+        _boardUpdated = false;
+
         try
         {
             Resources res = getResources();
-            Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-            Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-            p2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+            Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            Drawable empty = Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape));
+            player2.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
-            //_imagePlayer1.setImageDrawable(p1);
-            //_imagePlayer2.setImageDrawable(p2);
+            for (int x = 0 ; x < board.getSize() ; ++x)
+            {
+                for (int y = 0 ; y < board.getSize() ; ++y)
+                {
+                    switch (board.getXY(x, y).getState())
+                    {
+                        case PLAYER1:
+                            (btns[y][x]).setBackground(player1);
+                            break;
+                        case PLAYER2:
+                            (btns[y][x]).setBackground(player2);
+                            break;
+                        default:
+                            (btns[y][x]).setBackground(empty);
+                            break;
+                    }
+                }
+            }
         }
         catch (Exception e)
         {
             Log.e("update", e.getMessage());
         }
+
+        _boardUpdated = true;
+    }
+
+    public boolean updated()
+    {
+        return (_boardUpdated && _scoresUpdated && _turnUpdated);
     }
 
     public void onSettings(View v)

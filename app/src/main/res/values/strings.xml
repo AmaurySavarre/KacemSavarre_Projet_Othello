@@ -28,6 +28,7 @@
     <string name="p2">Player 2</string>
     <string name="s1">S1</string>
     <string name="s2">S2</string>
+    <string name="Game.label">Othello</string>
     <string name="Game.turn_description">Player\'s turn</string>
     <string name="Game.rules_description">Button to show the rules</string>
     <string name="Game.home_description">Button to get back to the main menu</string>

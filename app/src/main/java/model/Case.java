@@ -5,13 +5,9 @@ import java.util.Observable;
 /**
  * Created by Amaury Savarre on 2/23/2016.
  */
-public class Case extends Observable
+public class Case// extends Observable
 {
-    public enum State {
-        EMPTY,
-        PLAYER1,
-        PLAYER2
-    }
+
 
     private State _state;     // State of the case.
 
@@ -20,9 +16,9 @@ public class Case extends Observable
      *
      * @return the actual state of the case.
      */
-    public int getState()
+    public State getState()
     {
-        switch (_state)
+        /*switch (_state)
         {
             case EMPTY:
                 return 0;
@@ -32,7 +28,8 @@ public class Case extends Observable
                 return 2;
             default:
                 return 0;
-        }
+        }*/
+        return _state;
     }
 
     /**
@@ -44,14 +41,19 @@ public class Case extends Observable
         _state = State.EMPTY;
     }
 
+    public Case(Case c)
+    {
+        _state = c._state;
+    }
+
     /**
      * Changes the state of the case depending one the player who plays.
      *
      * @param player The player who plays.
      */
-    public void changeState(int player)
+    public void changeState(Player player)
     {
-        switch (player)
+        /*switch (player)
         {
             case 1:
                 _state = State.PLAYER1;
@@ -62,9 +64,10 @@ public class Case extends Observable
             default:
                 _state = State.EMPTY;
                 break;
-        }
-        setChanged();
-        notifyObservers(_state);
+        }*/
+        _state = player.getAssociatedState();
+        /*setChanged();
+        notifyObservers(_state);*/
 
     }
 

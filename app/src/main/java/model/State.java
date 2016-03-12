@@ -1,10 +1,19 @@
 package model;
 
 /**
- * Created by Amaury on 2/23/2016.
+ * Created by Amaury on 12/03/2016.
  */
-public interface State
-{
-    State changeState(int player);
+public enum State {
+    EMPTY   (0),
+    PLAYER1 (1),
+    PLAYER2 (2);
+
+    private final int _state;
+
+    State(int state)
+    {
+        _state = state;
+    }
+
 
 }

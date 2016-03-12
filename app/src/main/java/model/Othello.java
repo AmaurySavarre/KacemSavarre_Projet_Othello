@@ -13,9 +13,6 @@ import controller.OthelloController;
 public class Othello
 {
     private Board _board;
-    private Player _actual_player;
-    private Player _player1;
-    private Player _player2;
 
     private OthelloController _controller;
 
@@ -40,9 +37,14 @@ public class Othello
         return _board.getXY(x, y);
     }
 
+    public Board getBoard()
+    {
+        return new Board(_board);
+    }
+
     public void initializeBoard()
     {
-        _board.initializeCases();
+        _board.initializeCases(_controller.getPlayer1(), _controller.getPlayer2());
     }
 
     /**
@@ -53,7 +55,7 @@ public class Othello
      * @param Y The Y coordinate on the board.
      * @return Returns true if the case is empty with at least one immediate one neighbour case occupied by the adversary which can be catch, else false.
      */
-    public boolean isPlayable(int player, int X, int Y)
+    public boolean isPlayable(Player player, int X, int Y)
     {
         //Log.d("isPlayable (" + X + "," + Y + ")", "IN");
         // Check if the case is empty and the player can make a catch at this coordinates.
@@ -75,11 +77,9 @@ public class Othello
      * @param y The Y coordinate on the board.
      * @return Return true if for any direction, the new player's move surround at least one adversary disk with one the player disk.
      */
-    public boolean catchPossible(int player, int x, int y)
+    public boolean catchPossible(Player player, int x, int y)
     {
         //Log.d("catchPossible (" + x + "," + y + ")", "IN");
-        // Get an iterator on the list of directions.
-        //Iterator<Direction> ite = Direction.getListDirections().iterator();
         // Get the list of all directions.
         List<Direction> directions = Direction.getListDirections();
 
@@ -95,38 +95,6 @@ public class Othello
                 //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
                 return true;
             }
-
-            /*// We temporarily move the X and Y.
-            int Xtmp = x + direction.getDeltaX();
-            int Ytmp = y + direction.getDeltaY();
-            //Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
-
-            // We check that the immediate neighbor is a disk of the adversary.
-            if(Xtmp >= 0 && Xtmp < _board.getSize() &&
-                    Ytmp >= 0 && Ytmp  < _board.getSize() &&
-                    !_board.caseEmpty(Xtmp, Ytmp) &&
-                    _board.getXY(Xtmp, Ytmp).getState() != player)
-            {
-                // Then we check if we can find a disk of the player that surrounds the adversary ones.
-                while(direction.getDeltaX() + x >= 0 &&
-                        direction.getDeltaX() + x < _board.getSize() &&
-                        direction.getDeltaY() + y >= 0 &&
-                        direction.getDeltaY() + y < _board.getSize() &&
-                        !_board.caseEmpty(Xtmp, Ytmp))
-                {
-                    // We found a player's disk.
-                    if(_board.getXY(Xtmp, Ytmp).getState() == player)
-                    {
-                        //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> true");
-                        return true;
-                    }
-
-                    // We temporarily move the X and Y to continue in the same direction.
-                    Xtmp = Xtmp + direction.getDeltaX();
-                    Ytmp = Ytmp + direction.getDeltaY();
-                    //Log.d("catchPossible (" + x + "," + y + ")", "Xtmp -> " + Xtmp + " and Ytmp -> " + Ytmp);
-                }
-            }*/
         }
 
         //Log.d("catchPossible (" + x + "," + y + ")", "OUT -> false");
@@ -134,7 +102,7 @@ public class Othello
         return false;
     }
 
-    public boolean catchInDirection(int player, int x, int y, Direction direction)
+    public boolean catchInDirection(Player player, int x, int y, Direction direction)
     {
         // We temporarily move the X and Y.
         int Xtmp = x + direction.getDeltaX();
@@ -145,7 +113,7 @@ public class Othello
         if(Xtmp >= 0 && Xtmp < _board.getSize() &&
                 Ytmp >= 0 && Ytmp  < _board.getSize() &&
                 !_board.caseEmpty(Xtmp, Ytmp) &&
-                _board.getXY(Xtmp, Ytmp).getState() != player)
+                _board.getXY(Xtmp, Ytmp).getState() != player.getAssociatedState())
         {
             // Then we check if we can find a disk of the player that surrounds the adversary ones.
             while(Xtmp >= 0 &&
@@ -155,7 +123,7 @@ public class Othello
                     !_board.caseEmpty(Xtmp, Ytmp))
             {
                 // We found a player's disk.
-                if(_board.getXY(Xtmp, Ytmp).getState() == player)
+                if(_board.getXY(Xtmp, Ytmp).getState() == player.getAssociatedState())
                 {
                     //Log.d("catchInDirection (" + x + "," + y + ")", "OUT -> true");
                     return true;
@@ -179,7 +147,7 @@ public class Othello
      * @param x The X coordinate on the board.
      * @param y The Y coordinate on the board.
      */
-    public boolean playAt(int player, int x, int y)
+    public boolean playAt(Player player, int x, int y)
     {
         //Log.d("playAt (" + x + "," + y + ")", "IN");
 
@@ -212,7 +180,7 @@ public class Othello
                     while(Xtmp >= 0 && Xtmp < _board.getSize() &&
                             Ytmp >= 0 && Ytmp < _board.getSize() &&
                             !_board.caseEmpty(Xtmp, Ytmp) &&
-                            _board.getXY(Xtmp, Ytmp).getState() != player)
+                            _board.getXY(Xtmp, Ytmp).getState() != player.getAssociatedState())
                     {
 
                         _board.changeXY(player, Xtmp, Ytmp);
@@ -237,7 +205,7 @@ public class Othello
      * @param player The player who wants a list of moves available.
      * @return A list of moves available for the player.
      */
-    public List<Move> getListMoves(int player)
+    public List<Move> getListMoves(Player player)
     {
         ArrayList<Move> list =  new ArrayList<>();
 
@@ -255,7 +223,7 @@ public class Othello
         return list;
     }
 
-    public int getScore(int player)
+    public int getScore(Player player)
     {
         int score = 0;
 
@@ -263,7 +231,7 @@ public class Othello
         {
             for(int x = 0 ; x < _board.getSize() ; x++)
             {
-                if(_board.getXY(x, y).getState() == player)
+                if(_board.getXY(x, y).getState() == player.getAssociatedState())
                 {
                     score++;
                 }
@@ -273,14 +241,65 @@ public class Othello
         return score;
     }
 
-    public boolean gameOver()
+    public Player getOpponent(Player player)
     {
-        if(getListMoves(_controller.getPlayer1().getNumber()).isEmpty() && getListMoves(_controller.getPlayer2().getNumber()).isEmpty())
+        return _controller.getOpponent(player);
+    }
+
+    public int evaluateBoard(Player player)
+    {
+        int eval = 0;
+
+        if (!gameOver())
         {
-            return true;
+            for (int x = 0 ; x < getBoardSize() ; ++x)
+            {
+                for (int y = 0 ; y < getBoardSize() ; ++y)
+                {
+                    Case c = _board.getXY(x, y);
+
+                    if (!c.isEmpty())
+                    {
+                        int weight = 0;
+
+                        if(x == 0 || y == 0)
+                        {
+                            weight = 10;
+                        }
+
+                        if (c.getState() != player.getAssociatedState())
+                        {
+                            weight = -weight;
+                        }
+
+                        eval += weight;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (getScore(player) <= getScore(getOpponent(player)))
+            {
+                eval = Integer.MIN_VALUE;
+            }
+            else
+            {
+                eval = Integer.MAX_VALUE;
+            }
         }
 
-        return false;
+        return eval;
+    }
+
+    public void setBoard(Board board)
+    {
+        _board = board;
+    }
+
+    public boolean gameOver()
+    {
+        return (getListMoves(_controller.getPlayer1()).isEmpty() && getListMoves(_controller.getPlayer2()).isEmpty());
     }
 
     public String toString()

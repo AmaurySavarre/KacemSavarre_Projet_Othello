@@ -12,11 +12,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import model.Case;
+import model.State;
 
 /**
  * Created by Amaury Savarre on 3/5/2016.
  */
-public class CaseButton extends Button implements Observer
+public class CaseButton extends Button// implements Observer
 {
     private Case _case;
 
@@ -36,7 +37,7 @@ public class CaseButton extends Button implements Observer
         setMeasuredDimension(width, width);
     }
 
-    @Override
+    /*@Override
     public void update(Observable observable, Object data)
     {
         /// TODO: 11/03/2016 Animation de retournement du pion.
@@ -51,7 +52,7 @@ public class CaseButton extends Button implements Observer
                 Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
                 player2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
-                switch ((Case.State) data)
+                switch ((State) data)
                 {
                     case PLAYER1:
                         setBackground(player1);
@@ -69,5 +70,5 @@ public class CaseButton extends Button implements Observer
                 Log.e("update", e.getMessage());
             }
         }
-    }
+    }*/
 }
