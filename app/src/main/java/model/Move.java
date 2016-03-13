@@ -23,4 +23,9 @@ public class Move
     {
         return _y;
     }
+
+    public String toString()
+    {
+        return "(" + _x + ", " + _y + ")";
+    }
 }

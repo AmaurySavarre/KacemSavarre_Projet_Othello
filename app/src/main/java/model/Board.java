@@ -67,17 +67,19 @@ public class Board
         {
             for(int x = 0 ; x < _size ; ++x)
             {
-                if(x == 0 || y == 0)
+                if (x != (_size/2) && y != (_size/2))
                 {
-                    changeXY(1, x, y);
-                }
-                else
-                {
-                    changeXY(2, x, y);
+                    if((x == 0 || y == 0 || x == _size-1 || y == _size-1))
+                    {
+                        changeXY(player1, x, y);
+                    }
+                    else
+                    {
+                        changeXY(player2, x, y);
+                    }
                 }
             }
-        }
-        changeXY(0, 5, 3);*/
+        }*/
     }
 
     /**

@@ -31,14 +31,14 @@ public class PlayerAI extends Player
 
         _hasPlayed = false;*/
 
-        List<Move> listMoves = _othello.getListMoves(this);
+        /*List<Move> listMoves = _othello.getListMoves(this);
 
         Move move = stupid(listMoves);
-        _othello.playAt(this, move.getX(), move.getY());
+        _othello.playAt(this, move.getX(), move.getY());*/
 
-        /*MoveValue bestMove = alphaBeta(_othello, Integer.MIN_VALUE, Integer.MAX_VALUE, 2, this);
-        Log.e("play", "best value = " + String.valueOf(bestMove.value));
-        _othello.playAt(this, bestMove.move.getX(), bestMove.move.getY());*/
+        MoveValue bestMove = alphaBeta(new Othello(_othello), Integer.MIN_VALUE, Integer.MAX_VALUE, 6, this);
+        Log.e("play", "best value = " + String.valueOf(bestMove.value) + " et best move = " + bestMove.move);
+        _othello.playAt(this, bestMove.move.getX(), bestMove.move.getY());
     }
 
     public Move stupid(List<Move> listMoves)
@@ -66,13 +66,14 @@ public class PlayerAI extends Player
         }
     }
 
-    public MoveValue alphaBeta(Othello othello, int alpha, int beta, int maxDepht, Player player)
+    public MoveValue alphaBeta(Othello othello, int alpha, int beta, int maxDepth, Player player)
     {
         Board boardSave;
         MoveValue bestMove = new MoveValue();
 
-        if (maxDepht == 0 || othello.gameOver())
+        if (maxDepth == 0 || othello.gameOver())
         {
+            //Log.e("alpha-beta", "Profondeur = " + maxDepht);
             bestMove.value =  othello.evaluateBoard(this);
             return bestMove;
         }
@@ -84,9 +85,10 @@ public class PlayerAI extends Player
             List<Move> listMoves = othello.getListMoves(player);
             for (Move move : listMoves)
             {
+                Log.e("alpha-beta", "good");
                 boardSave = othello.getBoard();
                 othello.playAt(player, move.getX(), move.getY());
-                MoveValue eval = alphaBeta(othello, alpha, beta, maxDepht - 1, othello.getOpponent(player));
+                MoveValue eval = alphaBeta(othello, alpha, beta, maxDepth - 1, othello.getOpponent(player));
                 eval.move = move;
                 bestMove = (bestMove.value < eval.value)?eval:bestMove;
                 alpha = (alpha < bestMove.value)?bestMove.value:alpha;
@@ -95,7 +97,6 @@ public class PlayerAI extends Player
                 if (beta <= alpha)
                 {
                     bestMove.value = beta;
-                    bestMove.move = null;
                     break;
                 }
             }
@@ -109,7 +110,7 @@ public class PlayerAI extends Player
             {
                 boardSave = othello.getBoard();
                 othello.playAt(player, move.getX(), move.getY());
-                MoveValue eval = alphaBeta(othello, alpha, beta, maxDepht - 1, othello.getOpponent(player));
+                MoveValue eval = alphaBeta(othello, alpha, beta, maxDepth - 1, othello.getOpponent(player));
                 eval.move = move;
                 bestMove = (bestMove.value > eval.value)?eval:bestMove;
                 beta = (beta > bestMove.value)?bestMove.value:beta;
@@ -118,7 +119,6 @@ public class PlayerAI extends Player
                 if (beta <= alpha)
                 {
                     bestMove.value = alpha;
-                    bestMove.move = null;
                     break;
                 }
             }

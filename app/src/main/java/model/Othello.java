@@ -27,6 +27,12 @@ public class Othello
         _board = new Board(size);
     }
 
+    public Othello(Othello o)
+    {
+        _board = o.getBoard();
+        _controller = o._controller;
+    }
+
     public int getBoardSize()
     {
         return _board.getSize();
@@ -260,7 +266,7 @@ public class Othello
 
                     if (!c.isEmpty())
                     {
-                        int weight = 0;
+                        int weight = 1;
 
                         if(x == 0 || y == 0)
                         {

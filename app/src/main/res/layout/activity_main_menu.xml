@@ -13,7 +13,7 @@
     android:minWidth="@dimen/abc_button_inset_horizontal_material">
 
     <TextView
-        style="@style/AppTheme.TextView.subtitle"
+        style="@style/AppTheme.TextView.title"
         android:id="@+id/MainMenu.TextView.title"
         android:text="@string/MainMenu.label"
         android:textAppearance="?android:attr/textAppearanceMedium"

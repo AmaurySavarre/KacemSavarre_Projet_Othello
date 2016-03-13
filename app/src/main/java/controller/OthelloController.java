@@ -197,7 +197,7 @@ public class OthelloController extends Thread
 
             try
             {
-                Thread.sleep(1000);
+                //Thread.sleep(100);
                 while(!_view.updated())
                 {
                     Thread.sleep(200);
