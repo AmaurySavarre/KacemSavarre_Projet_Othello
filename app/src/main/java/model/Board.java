@@ -36,11 +36,11 @@ public class Board
         _board = new Case[_size][_size];
 
         // Initializing the matrix of cases.
-        for(int i = 0 ; i < _size ; ++i)
+        for(int x = 0 ; x < _size ; ++x)
         {
-            for(int j = 0 ; j < _size ; ++j)
+            for(int y = 0 ; y < _size ; ++y)
             {
-                _board[i][j] = new Case(board._board[i][j]);
+                _board[y][x] = new Case(board._board[x][y]);
             }
         }
     }
@@ -136,9 +136,27 @@ public class Board
         return _board[Y][X].isEmpty();
     }
 
+    public void copy(Board board)
+    {
+        if(this._size == board.getSize())
+        {
+            for(int x = 0 ; x < _size ; ++x)
+            {
+                for(int y = 0 ; y < _size ; ++y)
+                {
+                    _board[y][x].copy(board.getXY(x, y));
+                }
+            }
+        }
+        else
+        {
+            Log.e("copy", "Not the same size");
+        }
+    }
+
     public String toString()
     {
-        String res = new String();
+        String res = "";
 
         res += "\n";
         for(int i = 0 ; i < _size ; ++i)

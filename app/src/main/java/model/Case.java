@@ -81,6 +81,11 @@ public class Case// extends Observable
         return (_state == State.EMPTY);
     }
 
+    public void copy(Case c)
+    {
+        this._state = c.getState();
+    }
+
     public String toString()
     {
         switch (_state)

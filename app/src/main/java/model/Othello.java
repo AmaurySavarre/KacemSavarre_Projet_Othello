@@ -29,7 +29,7 @@ public class Othello
 
     public Othello(Othello o)
     {
-        _board = o.getBoard();
+        _board = new Board(o._board);
         _controller = o._controller;
     }
 
@@ -45,7 +45,7 @@ public class Othello
 
     public Board getBoard()
     {
-        return new Board(_board);
+        return _board;
     }
 
     public void initializeBoard()
@@ -256,42 +256,49 @@ public class Othello
     {
         int eval = 0;
 
-        if (!gameOver())
-        {
-            for (int x = 0 ; x < getBoardSize() ; ++x)
-            {
-                for (int y = 0 ; y < getBoardSize() ; ++y)
-                {
-                    Case c = _board.getXY(x, y);
-
-                    if (!c.isEmpty())
-                    {
-                        int weight = 1;
-
-                        if(x == 0 || y == 0)
-                        {
-                            weight = 10;
-                        }
-
-                        if (c.getState() != player.getAssociatedState())
-                        {
-                            weight = -weight;
-                        }
-
-                        eval += weight;
-                    }
-                }
-            }
-        }
-        else
+        if (gameOver())
         {
             if (getScore(player) <= getScore(getOpponent(player)))
             {
-                eval = Integer.MIN_VALUE;
+                return Integer.MIN_VALUE;
             }
             else
             {
-                eval = Integer.MAX_VALUE;
+                return Integer.MAX_VALUE;
+            }
+        }
+
+        if (getListMoves(player).isEmpty())
+        {
+            eval = Integer.MIN_VALUE/2;
+        }
+        else if (getListMoves(getOpponent(player)).isEmpty())
+        {
+            eval = Integer.MAX_VALUE/2;
+        }
+
+        for (int x = 0; x < getBoardSize(); ++x) {
+            for (int y = 0; y < getBoardSize(); ++y) {
+                Case c = _board.getXY(x, y);
+
+                if (!c.isEmpty()) {
+                    int weight = 1;
+
+                    if ((x==0 && y==0) || (x==0 && y==getBoardSize()-1) || (x==getBoardSize()-1 && y==0) || (x==getBoardSize()-1 && y==getBoardSize()-1))
+                    {
+                        weight += 1000;
+                    }
+                    else if (x == 0 || y == 0)
+                    {
+                        weight += 10;
+                    }
+
+                    if (c.getState() != player.getAssociatedState()) {
+                        weight = -weight;
+                    }
+
+                    eval += weight;
+                }
             }
         }
 
@@ -300,7 +307,7 @@ public class Othello
 
     public void setBoard(Board board)
     {
-        _board = board;
+        _board.copy(board);
     }
 
     public boolean gameOver()
