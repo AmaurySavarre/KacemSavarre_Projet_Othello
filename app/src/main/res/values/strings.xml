@@ -35,4 +35,11 @@
     <string name="Game.settings_description">Button to open the setting menu</string>
     <string name="Game.player1_description">Image of the player 1 disk</string>
     <string name="Game.player2_description">Image of the player 2 disk</string>
+
+    <!-- Rules -->
+    <string name="Rules">Rules</string>
+
+
 </resources>
+
+
