@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.utilisateur.othello.MainMenuActivity"
-    android:background="@drawable/background"
+    android:background="@drawable/background2"
     android:minWidth="@dimen/abc_button_inset_horizontal_material">
 
     <TextView
