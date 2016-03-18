@@ -64,6 +64,9 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onRules(View v)
     {
         Toast.makeText(getApplicationContext(), "onRules()", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainMenuActivity.this, RulesActivity.class);
+        startActivity(intent);
     }
 
     public void onSettings(View v)

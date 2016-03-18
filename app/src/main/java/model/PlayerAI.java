@@ -10,32 +10,16 @@ import java.util.Random;
  */
 public class PlayerAI extends Player
 {
-    public PlayerAI(Othello othello,int number)
+    private int _depth;
+
+    public PlayerAI(Othello othello,int number, int maxDepth)
     {
         super(othello, number);
+        _depth = maxDepth;
     }
 
     public void play()
     {
-        /*while (!_hasPlayed)
-        {
-            try
-            {
-                Thread.sleep(100);
-            }
-            catch (InterruptedException e)
-            {
-                Log.e("play()", e.toString());
-            }
-        }
-
-        _hasPlayed = false;*/
-
-        /*List<Move> listMoves = _othello.getListMoves(this);
-
-        Move move = stupid(listMoves);
-        _othello.playAt(this, move.getX(), move.getY());*/
-
         int bestValue = Integer.MIN_VALUE;
         Move bestMove = new Move(0, 0);
         Board boardSave = new Board(_othello.getBoardSize());
@@ -45,7 +29,7 @@ public class PlayerAI extends Player
         {
             boardSave.copy(othello.getBoard());
             othello.playAt(this, move.getX(), move.getY());
-            int moveValue = alphaBeta(othello, Integer.MIN_VALUE, Integer.MAX_VALUE, 2, _othello.getOpponent(this));
+            int moveValue = alphaBeta(othello, Integer.MIN_VALUE, Integer.MAX_VALUE, _depth, _othello.getOpponent(this));
             othello.setBoard(boardSave);
             if (moveValue >= bestValue)
             {

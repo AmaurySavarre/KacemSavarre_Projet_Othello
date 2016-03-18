@@ -1,16 +1,13 @@
 package com.example.utilisateur.othello;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
-import java.util.logging.Handler;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -20,10 +17,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen1);
         StartAnimations();
 
-        Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
-        startActivity(intent);
-        }
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
+                startActivity(intent);
+            }
+        }, 5000);
+    }
 
     private void StartAnimations() {
         AnimationSet s = new AnimationSet(false);

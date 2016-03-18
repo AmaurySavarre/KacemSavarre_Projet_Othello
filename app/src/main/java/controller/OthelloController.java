@@ -33,8 +33,8 @@ public class OthelloController extends Thread
         _othello = new Othello(this, size);
         _view = view;
 
-        _player1 = new PlayerAI(_othello, 1);
-        _player2 = new PlayerAI(_othello, 2);
+        _player1 = new PlayerAI(_othello, 1, 2);
+        _player2 = new PlayerAI(_othello, 2, 6);
         _actual_player = _player1;
 
         _waiting = true;
