@@ -40,7 +40,6 @@
             android:textColor="#0f0d0d"
             android:background="@android:color/darker_gray"
             android:layout_below="@+id/Rules.Textview.Rules"
-            android:maxLines="10"
             android:scrollbars="vertical"
             />
     <!--</ScrollView>-->

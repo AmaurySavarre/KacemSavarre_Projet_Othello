@@ -19,30 +19,30 @@ import model.PlayerHuman;
 /**
  * Created by Amaury Savarre on 29/02/2016.
  */
-public class OthelloController extends Thread
+public class OthelloController
 {
     private Player _player1;
     private Player _player2;
     private Player _actual_player;
     private boolean _waiting;
-    private boolean _isRunning;
 
     private Othello _othello;
     private GameActivity _view;
 
     private View.OnClickListener _listener;
 
+    private GameThread thread;
+
     public OthelloController(GameActivity view, int size)
     {
         _othello = new Othello(this, size);
         _view = view;
 
-        _player1 = new PlayerAI(_othello, 1, 1);
-        _player2 = new PlayerAI(_othello, 2, 1);
+        _player1 = new PlayerAI(_othello, 1, 2);
+        _player2 = new PlayerAI(_othello, 2, 2);
         _actual_player = _player1;
 
         _waiting = true;
-        _isRunning = false;
 
         _listener = new View.OnClickListener() {
             @Override
@@ -188,49 +188,66 @@ public class OthelloController extends Thread
         });
     }
 
-    @Override
-    public void run()
+    private class GameThread extends Thread
     {
-        _isRunning = true;
-        while(!_othello.gameOver() && _isRunning)
+        private boolean _isRunning = false;
+
+        @Override
+        public void run()
         {
-            List<Move> listMoves = _othello.getListMoves(_actual_player);
-            if(!listMoves.isEmpty())
+            _isRunning = true;
+            while(!_othello.gameOver() && _isRunning)
             {
-                showPlayerMoves(listMoves);
-                _actual_player.play();
-                updateBoard();
-                changeScores();
-            }
-            else
-            {
-                // Advert player that he can't play.
-                launchToast("Ne peut pas jouer");
-                // TODO: 11/03/2016 Prévenir le joueur qu'il ne peut pas jouer.
-            }
-
-            changePlayer();
-
-            try
-            {
-                while(!_view.updated())
+                List<Move> listMoves = _othello.getListMoves(_actual_player);
+                if(!listMoves.isEmpty())
                 {
-                    Thread.sleep(200);
+                    showPlayerMoves(listMoves);
+                    _actual_player.play();
+                    updateBoard();
+                    changeScores();
+                }
+                else
+                {
+                    // Advert player that he can't play.
+                    launchToast("Ne peut pas jouer");
+                    // TODO: 11/03/2016 Prévenir le joueur qu'il ne peut pas jouer.
+                }
+
+                changePlayer();
+
+                try
+                {
+                    while(!_view.updated())
+                    {
+                        Thread.sleep(200);
+                    }
+                }
+                catch (InterruptedException e)
+                {
+                    Log.e("run", e.getMessage());
                 }
             }
-            catch (InterruptedException e)
-            {
-                Log.e("run", e.getMessage());
-            }
-        }
-        _isRunning = false;
+            _isRunning = false;
 
-        // TODO: 11/03/2016 Gérer la fin de partie.
-        launchToast("Partie finie !");
+            // TODO: 11/03/2016 Gérer la fin de partie.
+            launchToast("Partie finie !");
+        }
+
+        public void stopGame()
+        {
+            _isRunning = false;
+        }
     }
 
-    public void stopGame()
+
+    public void stop()
     {
-        _isRunning = false;
+        thread.stopGame();
+    }
+
+    public void start()
+    {
+        thread = new GameThread();
+        thread.start();
     }
 }

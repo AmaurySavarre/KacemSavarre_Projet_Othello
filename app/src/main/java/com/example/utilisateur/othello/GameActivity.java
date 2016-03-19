@@ -1,5 +1,6 @@
 package com.example.utilisateur.othello;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -15,23 +17,35 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import controller.OthelloController;
 import model.Board;
 import model.Move;
 import model.Player;
-import model.State;
 
 public class GameActivity extends AppCompatActivity
 {
-    private TableLayout table;
+    private TableLayout _table;
     private CaseButton[][] btns;
 
     private TextView _scorePlayer1;
     private TextView _scorePlayer2;
 
     private ImageView _turn;
+
+    private Drawable _emptyCase;
+    private Drawable _player1Case;
+    private Drawable _player2Case;
+    private Drawable _player1Disk;
+    private Drawable _player2Disk;
+    private Drawable _possibleCase;
 
     private OthelloController _controller;
 
@@ -50,7 +64,52 @@ public class GameActivity extends AppCompatActivity
 
         _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
 
-        table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
+        _table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
+
+        try
+        {
+            Resources res = getResources();
+            _player1Disk = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
+            _player1Disk.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            _player2Disk = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
+
+            _player1Case = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            _player2Case = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            _player1Case.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+
+            _emptyCase = Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape));
+
+            _possibleCase = Drawable.createFromXml(res, res.getXml(R.xml.case_possible_move));
+
+        }
+        catch (Exception e)
+        {
+            Log.e("update", e.getMessage());
+        }
+
+        try
+        {
+            FileInputStream fis = getApplicationContext().openFileInput("save.data");
+
+            XmlSerializer serializer = Xml.newSerializer();
+            serializer.setOutput(fos, "UTF-8");
+            serializer.startDocument(null, true);
+            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+
+            serializer.startTag(null, "Othello");
+            serializer.text("Ceci est un test de serialization");
+            serializer.endTag(null, "Othello");
+
+
+        }
+        catch (FileNotFoundException e)
+        {
+            Log.e("onDestroy", e.getMessage());
+        }
+        catch (IOException e)
+        {
+            Log.e("onDestroy", e.getMessage());
+        }
 
         _scoresUpdated = true;
         _turnUpdated = true;
@@ -68,7 +127,7 @@ public class GameActivity extends AppCompatActivity
     {
         super.onPause();
 
-        _controller.stopGame();
+        _controller.stop();
     }
 
     @Override
@@ -79,13 +138,43 @@ public class GameActivity extends AppCompatActivity
         _controller.start();
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        try
+        {
+            FileOutputStream fos = openFileOutput("save.data", Context.MODE_PRIVATE);
+
+            XmlSerializer serializer = Xml.newSerializer();
+            serializer.setOutput(fos, "UTF-8");
+            serializer.startDocument(null, true);
+            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+
+            serializer.startTag(null, "Othello");
+            serializer.text("Ceci est un test de serialization");
+            serializer.endTag(null, "Othello");
+
+            fos.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            Log.e("onDestroy", e.getMessage());
+        }
+        catch (IOException e)
+        {
+            Log.e("onDestroy", e.getMessage());
+        }
+    }
+
 
     private void createButtons()
     {
         int n = _controller.getBoardSize();
 
-        table.removeAllViews();
-        table.setStretchAllColumns(true);
+        _table.removeAllViews();
+        _table.setStretchAllColumns(true);
 
         btns = new CaseButton[n][n];
         for(int y=0; y<n; y++){
@@ -105,8 +194,8 @@ public class GameActivity extends AppCompatActivity
 
             }
 
-            table.addView(row);
-            table.setColumnShrinkable(y, true);
+            _table.addView(row);
+            _table.setColumnShrinkable(y, true);
         }
         setButtons(); //initialiser les images
     }
@@ -116,21 +205,12 @@ public class GameActivity extends AppCompatActivity
     {
         int n = _controller.getBoardSize();
 
-        try
+        for (int y=0; y<n; y++)
         {
-            Resources res = getResources();
-
-            for (int y=0; y<n; y++)
+            for (int x=0; x<n; x++)
             {
-                for (int x=0; x<n; x++)
-                {
-                    (btns[y][x]).setBackground(Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape)));
-                }
+                (btns[y][x]).setBackground(_emptyCase);
             }
-        }
-        catch (Exception e)
-        {
-            Log.e("setButtons", e.getMessage());
         }
     }
 
@@ -148,28 +228,16 @@ public class GameActivity extends AppCompatActivity
     {
         _turnUpdated = false;
 
-        try
+        switch (player.getNumber())
         {
-            Resources res = getResources();
-            Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
-            Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
-            p1.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
-
-            switch (player.getNumber())
-            {
-                case 1 :
-                    _turn.setImageDrawable(p1);
-                    break;
-                case 2:
-                    _turn.setImageDrawable(p2);
-                    break;
-                default:
-                    break;
-            }
-        }
-        catch (Exception e)
-        {
-            Log.e("update", e.getMessage());
+            case 1 :
+                _turn.setImageDrawable(_player1Disk);
+                break;
+            case 2:
+                _turn.setImageDrawable(_player2Disk);
+                break;
+            default:
+                break;
         }
 
         _turnUpdated = true;
@@ -179,36 +247,23 @@ public class GameActivity extends AppCompatActivity
     {
         _boardUpdated = false;
 
-        try
+        for (int x = 0 ; x < board.getSize() ; ++x)
         {
-            Resources res = getResources();
-            Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-            Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-            Drawable empty = Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape));
-            player1.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
-
-            for (int x = 0 ; x < board.getSize() ; ++x)
+            for (int y = 0 ; y < board.getSize() ; ++y)
             {
-                for (int y = 0 ; y < board.getSize() ; ++y)
+                switch (board.getXY(x, y).getState())
                 {
-                    switch (board.getXY(x, y).getState())
-                    {
-                        case PLAYER1:
-                            (btns[y][x]).setBackground(player1);
-                            break;
-                        case PLAYER2:
-                            (btns[y][x]).setBackground(player2);
-                            break;
-                        default:
-                            (btns[y][x]).setBackground(empty);
-                            break;
-                    }
+                    case PLAYER1:
+                        (btns[y][x]).setBackground(_player1Case);
+                        break;
+                    case PLAYER2:
+                        (btns[y][x]).setBackground(_player2Case);
+                        break;
+                    default:
+                        (btns[y][x]).setBackground(_emptyCase);
+                        break;
                 }
             }
-        }
-        catch (Exception e)
-        {
-            Log.e("update", e.getMessage());
         }
 
         _boardUpdated = true;
@@ -216,20 +271,9 @@ public class GameActivity extends AppCompatActivity
 
     public void showPlayerMoves(List<Move> moves)
     {
-        try
+        for(Move move : moves)
         {
-            Resources res = getResources();
-            Drawable drawable = Drawable.createFromXml(res, res.getXml(R.xml.case_possible_move));
-
-            for(Move move : moves)
-            {
-                btns[move.getY()][move.getX()].setBackground(drawable);
-            }
-
-        }
-        catch (Exception e)
-        {
-            Log.e("update", e.getMessage());
+            btns[move.getY()][move.getX()].setBackground(_possibleCase);
         }
     }
 
