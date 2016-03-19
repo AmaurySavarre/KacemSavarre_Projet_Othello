@@ -25,6 +25,8 @@ public class PlayerAI extends Player
         Board boardSave = new Board(_othello.getBoardSize());
         Othello othello = new Othello(_othello);
         List<Move> listMoves = _othello.getListMoves(this);
+        Random rand = new Random();
+
         for (Move move : listMoves)
         {
             boardSave.copy(othello.getBoard());
@@ -33,8 +35,11 @@ public class PlayerAI extends Player
             othello.setBoard(boardSave);
             if (moveValue >= bestValue)
             {
-                bestValue = moveValue;
-                bestMove = move;
+                if(rand.nextInt(100)>50)
+                {
+                    bestValue = moveValue;
+                    bestMove = move;
+                }
             }
         }
         Log.e("play", "best value = " + String.valueOf(bestValue) + " et best move = " + bestMove);
@@ -46,24 +51,6 @@ public class PlayerAI extends Player
         Random rand = new Random();
 
         return listMoves.get(rand.nextInt(listMoves.size()));
-    }
-
-    public class MoveValue
-    {
-        public Move move;
-        public int value;
-
-        public MoveValue()
-        {
-            move = null;
-            value = 0;
-        }
-
-        public MoveValue(Move move, int value)
-        {
-            this.move = move;
-            this.value = value;
-        }
     }
 
     public int alphaBeta(Othello othello, int alpha, int beta, int maxDepth, Player player)
@@ -124,11 +111,7 @@ public class PlayerAI extends Player
 
     public void playAt(int x, int y)
     {
-        /*if(_othello.isPlayable(this, x, y))
-        {
-            _othello.playAt(this, x, y);
-            _hasPlayed = true;
-        }*/
+        // Do Nothing
     }
 }
 

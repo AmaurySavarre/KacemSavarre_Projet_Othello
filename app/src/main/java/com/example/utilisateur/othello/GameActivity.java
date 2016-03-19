@@ -15,8 +15,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import controller.OthelloController;
 import model.Board;
+import model.Move;
 import model.Player;
 import model.State;
 
@@ -58,6 +61,21 @@ public class GameActivity extends AppCompatActivity
         createButtons();
 
         _controller.initializeGame();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        _controller.stopGame();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
         _controller.start();
     }
 
@@ -135,7 +153,7 @@ public class GameActivity extends AppCompatActivity
             Resources res = getResources();
             Drawable p1 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
             Drawable p2 = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
-            p2.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            p1.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
             switch (player.getNumber())
             {
@@ -167,7 +185,7 @@ public class GameActivity extends AppCompatActivity
             Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
             Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
             Drawable empty = Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape));
-            player2.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            player1.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
 
             for (int x = 0 ; x < board.getSize() ; ++x)
             {
@@ -194,6 +212,25 @@ public class GameActivity extends AppCompatActivity
         }
 
         _boardUpdated = true;
+    }
+
+    public void showPlayerMoves(List<Move> moves)
+    {
+        try
+        {
+            Resources res = getResources();
+            Drawable drawable = Drawable.createFromXml(res, res.getXml(R.xml.case_possible_move));
+
+            for(Move move : moves)
+            {
+                btns[move.getY()][move.getX()].setBackground(drawable);
+            }
+
+        }
+        catch (Exception e)
+        {
+            Log.e("update", e.getMessage());
+        }
     }
 
     public boolean updated()

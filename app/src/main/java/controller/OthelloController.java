@@ -8,6 +8,9 @@ import android.widget.Toast;
 import com.example.utilisateur.othello.CaseButton;
 import com.example.utilisateur.othello.GameActivity;
 
+import java.util.List;
+
+import model.Move;
 import model.Othello;
 import model.Player;
 import model.PlayerAI;
@@ -22,6 +25,7 @@ public class OthelloController extends Thread
     private Player _player2;
     private Player _actual_player;
     private boolean _waiting;
+    private boolean _isRunning;
 
     private Othello _othello;
     private GameActivity _view;
@@ -33,13 +37,12 @@ public class OthelloController extends Thread
         _othello = new Othello(this, size);
         _view = view;
 
-        _player1 = new PlayerAI(_othello, 1, 2);
-        _player2 = new PlayerAI(_othello, 2, 6);
+        _player1 = new PlayerAI(_othello, 1, 1);
+        _player2 = new PlayerAI(_othello, 2, 1);
         _actual_player = _player1;
 
         _waiting = true;
-
-        //_view.setImagePlayer(_player1, _player2);
+        _isRunning = false;
 
         _listener = new View.OnClickListener() {
             @Override
@@ -175,13 +178,26 @@ public class OthelloController extends Thread
         });
     }
 
+    public void showPlayerMoves(final List<Move> moves)
+    {
+        _view.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                _view.showPlayerMoves(moves);
+            }
+        });
+    }
+
     @Override
     public void run()
     {
-        while(!_othello.gameOver())
+        _isRunning = true;
+        while(!_othello.gameOver() && _isRunning)
         {
-            if(!_othello.getListMoves(_actual_player).isEmpty())
+            List<Move> listMoves = _othello.getListMoves(_actual_player);
+            if(!listMoves.isEmpty())
             {
+                showPlayerMoves(listMoves);
                 _actual_player.play();
                 updateBoard();
                 changeScores();
@@ -197,7 +213,6 @@ public class OthelloController extends Thread
 
             try
             {
-                //Thread.sleep(100);
                 while(!_view.updated())
                 {
                     Thread.sleep(200);
@@ -208,8 +223,14 @@ public class OthelloController extends Thread
                 Log.e("run", e.getMessage());
             }
         }
+        _isRunning = false;
 
         // TODO: 11/03/2016 Gérer la fin de partie.
         launchToast("Partie finie !");
+    }
+
+    public void stopGame()
+    {
+        _isRunning = false;
     }
 }

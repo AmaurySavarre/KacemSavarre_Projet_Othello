@@ -12,33 +12,30 @@
                 />
 
             <stroke
-                android:width="2sp"
+                android:width="1sp"
                 android:color="@android:color/black"
                 />
         </shape>
     </item>
-    <item>
+    <item
+        android:start="3sp"
+        android:left="3sp"
+        android:end="3sp"
+        android:right="3sp"
+        android:top="3sp"
+        android:bottom="3sp" >
         <shape android:shape="oval">
             <size
                 android:height="50sp"
                 android:width="50sp"
                 />
 
-            <!--<gradient
-                android:type="radial"
-                android:centerX="90%"
-                android:centerY="10%"
-                android:startColor="@android:color/darker_gray"
-                android:centerColor="@android:color/black"
-                android:endColor="@android:color/black"
-                android:gradientRadius="75"
-                />-->
             <solid
-                android:color="@android:color/white"
+                android:color="#77FFFFFF"
                 />
             <stroke
-                android:color="@android:color/black"
-                android:dashWidth="2sp"
+                android:color="#77000000"
+                android:width="1sp"
                 />
         </shape>
     </item>
