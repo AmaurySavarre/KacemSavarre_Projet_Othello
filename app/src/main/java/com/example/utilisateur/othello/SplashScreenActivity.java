@@ -14,7 +14,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen1);
+        setContentView(R.layout.activity_splash_screen);
         StartAnimations();
 
         new Handler().postDelayed(new Runnable() {
@@ -58,7 +58,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
        /* anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
-        setContentView(R.layout.activity_splash_screen1);
+        setContentView(R.layout.activity_splash_screen);
         RelativeLayout l2 = (RelativeLayout) findViewById(R.id.splash_layout1);
         l2.setVisibility(View.VISIBLE);
         l2.clearAnimation();

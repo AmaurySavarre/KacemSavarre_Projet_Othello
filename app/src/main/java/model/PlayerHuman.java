@@ -18,9 +18,9 @@ public class PlayerHuman extends Player
 
     public void play()
     {
-        _isPlaying = true;
+        _hasPlayed = false;
 
-        while (!_hasPlayed)
+        while (!_hasPlayed && !_mustEnd)
         {
             try
             {
@@ -32,16 +32,16 @@ public class PlayerHuman extends Player
             }
         }
 
-        _hasPlayed = false;
+        if (_mustEnd)
+            _mustEnd = false;
     }
 
     public void playAt(int x, int y)
     {
-        if(_isPlaying && _othello.isPlayable(this, x, y))
+        if(!_hasPlayed && _othello.isPlayable(this, x, y))
         {
             _othello.playAt(this, x, y);
             _hasPlayed = true;
-            _isPlaying = false;
         }
     }
 }

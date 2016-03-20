@@ -30,6 +30,11 @@ public class Board
         }
     }
 
+    private Board()
+    {
+
+    }
+
     public Board(Board board)
     {
         _size = board._size;
@@ -158,19 +163,34 @@ public class Board
     {
         String res = "";
 
-        res += "\n";
         for(int i = 0 ; i < _size ; ++i)
         {
             for(int j = 0 ; j < _size ; ++j)
             {
                 res += _board[i][j];
-                res += " ";
             }
-            res += "\n";
         }
 
-        res += "\n";
-
         return res;
+    }
+
+    public static Board fromString(String data, int size)
+    {
+        Board board = new Board();
+
+        board._size = size;
+        board._board = new Case[size][size];
+
+        for (int i = 0 ; i < data.length() ; ++i)
+        {
+            int x = i%size;
+            int y = i/size;
+
+            int val = Integer.parseInt(data.substring(i, i + 1));
+            State state = State.getState(val);
+            board._board[y][x] = new Case(state);
+        }
+
+        return board;
     }
 }

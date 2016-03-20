@@ -113,6 +113,11 @@ public class PlayerAI extends Player
     {
         // Do Nothing
     }
+
+    @Override
+    public boolean isAI() {
+        return true;
+    }
 }
 
 // TODO: 11/03/2016 Faire l'IA.

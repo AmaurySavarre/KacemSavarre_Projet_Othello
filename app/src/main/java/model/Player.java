@@ -8,6 +8,7 @@ abstract public class Player
     protected int _number;
     protected Othello _othello;
     protected boolean _hasPlayed;
+    protected boolean _mustEnd;
     protected State _associatedState;
 
     public int getNumber()
@@ -18,6 +19,11 @@ abstract public class Player
     public State getAssociatedState()
     {
         return _associatedState;
+    }
+
+    public void stopPlayer()
+    {
+        _mustEnd = true;
     }
 
     public Player(Othello othello,int number)
@@ -37,6 +43,12 @@ abstract public class Player
         }
         _number = number;
         _hasPlayed = false;
+        _mustEnd = false;
+    }
+
+    public boolean isAI()
+    {
+        return false;
     }
 
     abstract public void  play();

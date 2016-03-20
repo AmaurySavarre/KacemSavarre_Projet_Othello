@@ -27,6 +27,11 @@ public class Othello
         _board = new Board(size);
     }
 
+    private Othello(OthelloController controller)
+    {
+        _controller = controller;
+    }
+
     public Othello(Othello o)
     {
         _board = new Board(o._board);
@@ -318,5 +323,14 @@ public class Othello
     public String toString()
     {
         return _board.toString();
+    }
+
+    public static Othello fromString(String data, int boardSize, OthelloController controller)
+    {
+        Othello othello = new Othello(controller);
+
+        othello._board = Board.fromString(data, boardSize);
+
+        return othello;
     }
 }

@@ -15,5 +15,18 @@ public enum State {
         _state = state;
     }
 
-
+    public static State getState(int state)
+    {
+        switch (state)
+        {
+            case 0:
+                return EMPTY;
+            case 1:
+                return PLAYER1;
+            case 2:
+                return PLAYER2;
+            default:
+                return null;
+        }
+    }
 }

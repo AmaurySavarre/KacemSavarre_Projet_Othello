@@ -83,9 +83,6 @@
     </style>
 
     <style name="AppTheme.TextView.settings">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-
         <item name="android:textColor">@color/title</item>
         <item name="android:textSize">@dimen/Text.small</item>
 

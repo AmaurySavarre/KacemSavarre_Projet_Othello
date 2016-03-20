@@ -4,8 +4,8 @@
     tools:context="com.example.utilisateur.othello.SettingsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dialog_shape"
-    style="@style/AppTheme.TextView.title">
+    android:background="@drawable/background1"
+    android:gravity="center">
 
     <TextView
         style="@style/AppTheme.TextView.subtitle"
@@ -17,14 +17,7 @@
         android:text="@string/Settings.label"
         android:textSize="@dimen/Text.normal"
         android:layout_marginBottom="20sp"
-        android:background="@drawable/top_bar_shape"
         />
-
-    <ImageButton
-        style="@style/imageButton"
-        android:src="@drawable/ic_close_black_48dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
 
     <TextView
         style="@style/AppTheme.TextView.settings"
@@ -45,72 +38,37 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10sp"
         android:spinnerMode="dropdown"
-        android:popupBackground="@drawable/dialog_shape"
+        android:popupBackground="@drawable/background1"
         />
 
     <TextView
         style="@style/AppTheme.TextView.settings"
-        android:id="@+id/Settings.TextView.colors"
+        android:id="@+id/Settings.TextView.help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Settings.Spinner.language"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10sp"
-        android:text="@string/Settings.colors"/>
+        android:text="@string/Settings.help"/>
 
-    <GridLayout
-        android:id="@+id/Settings.GridLayout.colors"
-        android:layout_width="match_parent"
+    <Switch
+        android:id="@+id/Settings.Switch.help"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Settings.TextView.colors"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Settings.TextView.help"
+        android:text="@string/Settings.active_help"
         android:layout_margin="10sp"
-        android:orientation="horizontal"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <TextView
-            style="@style/AppTheme.TextView.subtitle"
-            android:id="@+id/Settings.GridLayout.TextView.player1"
-            android:text="@string/player1"
-            android:textSize="@dimen/Text.tiny"
-            android:layout_gravity="center"
-            android:layout_row="0"
-            android:layout_column="0"
-            />
-
-        <TextView
-            style="@style/AppTheme.TextView.subtitle"
-            android:id="@+id/Settings.GridLayout.TextView.player2"
-            android:text="@string/player2"
-            android:textSize="@dimen/Text.tiny"
-            android:layout_gravity="center"
-            android:layout_row="0"
-            android:layout_column="1"
-            />
-
-        <Button
-            android:id="@+id/Settings.GridLayout.Button.player1"
-            android:layout_gravity="center"
-            android:layout_row="1"
-            android:layout_column="0"
-            />
-
-        <Button
-            android:id="@+id/Settings.GridLayout.Button.player2"
-            android:layout_gravity="center"
-            android:layout_row="1"
-            android:layout_column="1"
-            />
-
-    </GridLayout>
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/Text.tiny"/>
 
     <TextView
         style="@style/AppTheme.TextView.settings"
         android:id="@+id/Settings.TextView.music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Settings.GridLayout.colors"
+        android:layout_below="@+id/Settings.Switch.help"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10sp"
         android:text="@string/Settings.music"/>
@@ -121,5 +79,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Settings.TextView.music"
         android:layout_margin="10sp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#00ffffff"
+        android:src="@drawable/ic_arrow_back_black_48dp"
+        android:onClick="onBack" />
+
+    <Button
+        android:id="@+id/Settings.Button.save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Settings.SeekBar.music"
+        android:text="@string/Settings.save"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/Text.tiny"/>
 
 </RelativeLayout>

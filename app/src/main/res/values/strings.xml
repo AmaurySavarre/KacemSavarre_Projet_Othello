@@ -1,15 +1,18 @@
 <resources>
-    <string name="app_name">KSOthello</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name" translatable="false">KSOthello</string>
 
     <string name="player1">Player 1</string>
     <string name="player2">Player 2</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Main Menu -->
     <string name="MainMenu.label">Main Menu</string>
     <string name="MainMenu.play">Play</string>
     <string name="MainMenu.high_scores">High Scores</string>
     <string name="MainMenu.exit">Exit</string>
+    <string name="MainMenu.newGame">Do you want to continue the last game ?</string>
 
     <!-- Versus Menu -->
     <string name="VersusMenu.pvp">Player vs Player</string>
@@ -18,18 +21,16 @@
     <!-- Settings -->
     <string name="Settings.label">Settings</string>
     <string name="Settings.language">Language :</string>
-    <string name="Settings.colors">Colors :</string>
+    <string name="Settings.help">Help :</string>
     <string name="Settings.music">Music :</string>
     <string name="Settings.choose_language">Choose a language...</string>
 
     <!-- Game -->
     <string name="scores">Scores</string>
-    <string name="p1">Player 1</string>
-    <string name="p2">Player 2</string>
     <string name="s1">S1</string>
     <string name="s2">S2</string>
     <string name="Game.label">Othello</string>
-    <string name="Game.turn_description">Player\'s turn</string>
+    <string name="Game.turn_description">Color of the actual player turn\'s</string>
     <string name="Game.rules_description">Button to show the rules</string>
     <string name="Game.home_description">Button to get back to the main menu</string>
     <string name="Game.settings_description">Button to open the setting menu</string>
@@ -40,6 +41,8 @@
     <string name="Rules">Rules</string>
     <string name="text">Noir commence toujours la partie. Puis les joueurs jouent à tour de rôle, chacun étant tenu de capturer des pions adverses lors de son mouvement. Si un joueur ne peut pas capturer de pion(s) adverse(s), il est forcé de passer son tour. Si aucun des deux joueurs ne peut jouer,
         ou si l\'othellier ne comporte plus de case vide, la partie s\'arrête. Le gagnant en fin de partie est celui qui possède le plus de pions. La capture de pions survient lorsqu\'un joueur place un de ses pions à l\'extrémité d\'un alignement de pions adverses contigus et dont l\'autre extrémité est déjà occupée par un de ses propres pions. Les alignements considérés peuvent être une colonne, une ligne, ou une diagonale.Si le pion nouvellement placé vient fermer plusieurs alignements, il capture tous les pions adverses des lignes ainsi fermées. La capture se traduit par le retournement des pions capturé. Ces retournements n\'entraînent pas d\'effet de capture en cascade : seul le pion nouvellement posé est pris en compte.</string>
+    <string name="Settings.active_help">Activates the helps</string>
+    <string name="Settings.save">Save</string>
 
 
 </resources>

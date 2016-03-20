@@ -8,13 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.utilisateur.othello.VersusActivity"
-    android:background="@color/background" >
+    tools:context="com.example.utilisateur.othello.MainMenuActivity"
+    android:background="@drawable/background1"
+    android:id="@+id/Versus.mainLayout"
+    >
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton3"
+        android:id="@+id/Versus.ImageButton.back"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -26,20 +28,22 @@
         style="@style/menuButton"
         android:text="@string/VersusMenu.pvp"
         android:textSize="@dimen/Text.small"
-        android:id="@+id/buttonPVP"
-        android:layout_above="@+id/buttonPVCPU"/>
+        android:id="@+id/Versus.ImageButton.PVP"
+        android:layout_above="@+id/Versus.ImageButton.PVCPU"
+        android:onClick="onPvP"/>
 
     <Button
         style="@style/menuButton"
         android:text="@string/VersusMenu.pvm"
         android:textSize="@dimen/Text.small"
-        android:id="@+id/buttonPVCPU" />
+        android:id="@+id/Versus.ImageButton.PVCPU"
+        android:onClick="onPvM"/>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_below="@+id/buttonPVCPU"
+        android:id="@+id/Versus.Spinner.AI_level"
+        android:layout_below="@+id/Versus.ImageButton.PVCPU"
         android:layout_centerHorizontal="true"
         android:spinnerMode="dialog" />
 

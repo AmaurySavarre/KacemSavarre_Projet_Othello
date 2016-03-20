@@ -1,5 +1,7 @@
 package com.example.utilisateur.othello;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import controller.OthelloController;
 import model.Othello;
 
@@ -23,27 +27,76 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        /*OthelloController oc = new OthelloController(this, 8);
-        Othello o = new Othello(oc, 8);
-        o.initializeBoard();
-
-        Log.e("Othello toString", o.toString());
-        Log.d("Othello", "playAt(2, 4)");
-        o.playAt(1, 3, 3);
-        Log.e("Othello toString", "playAt(2, 4)" + o.toString());
-
-        TextView t = (TextView) findViewById(R.id.MainMenu_TextView_title);
-        t.setText(o.toString());*/
     }
 
     public void onPlay(View v)
     {
-        /*Intent intent = new Intent (MainMenuActivity.this , VersusActivity.class);
-        startActivity (intent);*/
-        Toast.makeText(getApplicationContext(), "onPlay()", Toast.LENGTH_SHORT).show();
+        String dir = getFilesDir().getAbsolutePath();
+        final File file = new File(dir, "save.data");
 
+        if (file.exists())
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    file.delete();
+                    setContentView(R.layout.activity_versus);
+                }
+            });
+
+            builder.setMessage(R.string.MainMenu_newGame);
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        else
+        {
+            setContentView(R.layout.activity_versus);
+        }
+    }
+
+    public void onPvP(View v)
+    {
         Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
+        setContentView(R.layout.activity_main_menu);
+        intent.putExtra("AI", false);
         startActivity(intent);
+    }
+
+    public void onPvM(View v)
+    {
+        Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
+        setContentView(R.layout.activity_main_menu);
+        intent.putExtra("AI", true);
+        startActivity(intent);
+    }
+
+    public void onBack(View v)
+    {
+        setContentView(R.layout.activity_main_menu);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (findViewById(R.id.Versus_mainLayout) == null)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            setContentView(R.layout.activity_main_menu);
+        }
     }
 
     public void onHighScores(View v)

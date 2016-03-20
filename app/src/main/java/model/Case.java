@@ -18,17 +18,6 @@ public class Case// extends Observable
      */
     public State getState()
     {
-        /*switch (_state)
-        {
-            case EMPTY:
-                return 0;
-            case PLAYER1:
-                return 1;
-            case PLAYER2:
-                return 2;
-            default:
-                return 0;
-        }*/
         return _state;
     }
 
@@ -37,8 +26,12 @@ public class Case// extends Observable
      */
     public Case()
     {
-        //_state = StateEmpty.getInstance();
         _state = State.EMPTY;
+    }
+
+    public Case(State state)
+    {
+        _state = state;
     }
 
     public Case(Case c)
@@ -53,22 +46,7 @@ public class Case// extends Observable
      */
     public void changeState(Player player)
     {
-        /*switch (player)
-        {
-            case 1:
-                _state = State.PLAYER1;
-                break;
-            case 2:
-                _state = State.PLAYER2;
-                break;
-            default:
-                _state = State.EMPTY;
-                break;
-        }*/
         _state = player.getAssociatedState();
-        /*setChanged();
-        notifyObservers(_state);*/
-
     }
 
     /**

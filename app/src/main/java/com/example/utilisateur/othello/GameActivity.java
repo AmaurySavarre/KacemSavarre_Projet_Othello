@@ -17,17 +17,22 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.List;
 
 import controller.OthelloController;
 import model.Board;
 import model.Move;
+import model.Othello;
 import model.Player;
 
 public class GameActivity extends AppCompatActivity
@@ -84,38 +89,36 @@ public class GameActivity extends AppCompatActivity
         }
         catch (Exception e)
         {
-            Log.e("update", e.getMessage());
-        }
-
-        try
-        {
-            FileInputStream fis = getApplicationContext().openFileInput("save.data");
-
-            XmlSerializer serializer = Xml.newSerializer();
-            serializer.setOutput(fos, "UTF-8");
-            serializer.startDocument(null, true);
-            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-
-            serializer.startTag(null, "Othello");
-            serializer.text("Ceci est un test de serialization");
-            serializer.endTag(null, "Othello");
-
-
-        }
-        catch (FileNotFoundException e)
-        {
-            Log.e("onDestroy", e.getMessage());
-        }
-        catch (IOException e)
-        {
-            Log.e("onDestroy", e.getMessage());
+            Log.e("onCreate", e.getMessage());
         }
 
         _scoresUpdated = true;
         _turnUpdated = true;
         _boardUpdated = true;
 
-        _controller = new OthelloController(this, 8);
+        try
+        {
+            String dir = getFilesDir().getAbsolutePath();
+            File file = new File(dir, "save.data");
+
+            if (file.exists())
+            {
+                FileInputStream fis = new FileInputStream(file);
+
+                _controller = OthelloController.fromXML(fis, this);
+
+                Log.d("OnCreate", "Xml loaded");
+            }
+            else
+            {
+                _controller = new OthelloController(this, 8);
+                Log.d("OnCreate", "No xml new game");
+            }
+        }
+        catch (Exception e)
+        {
+            Log.e("onCreate", e.getMessage());
+        }
 
         createButtons();
 
@@ -138,25 +141,31 @@ public class GameActivity extends AppCompatActivity
         _controller.start();
     }
 
+
+
     @Override
-    protected void onDestroy()
+    protected void onStop()
     {
-        super.onDestroy();
+        super.onStop();
 
         try
         {
-            FileOutputStream fos = openFileOutput("save.data", Context.MODE_PRIVATE);
 
-            XmlSerializer serializer = Xml.newSerializer();
-            serializer.setOutput(fos, "UTF-8");
-            serializer.startDocument(null, true);
-            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+            String data = _controller.toXML();
 
-            serializer.startTag(null, "Othello");
-            serializer.text("Ceci est un test de serialization");
-            serializer.endTag(null, "Othello");
+            if(data != null)
+            {
+                FileOutputStream fos = openFileOutput("save.data", Context.MODE_PRIVATE);
+                fos.write(data.getBytes());
+                fos.close();
+            }
+            else
+            {
+                String dir = getFilesDir().getAbsolutePath();
+                File file = new File(dir, "save.data");
+                file.delete();
+            }
 
-            fos.close();
         }
         catch (FileNotFoundException e)
         {
@@ -288,5 +297,10 @@ public class GameActivity extends AppCompatActivity
 
         Intent intent = new Intent(GameActivity.this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void onHome(View v)
+    {
+        finish();
     }
 }
