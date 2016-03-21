@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -17,46 +16,40 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-import org.xmlpull.v1.XmlSerializer;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.List;
 
 import controller.OthelloController;
 import model.Board;
 import model.Move;
-import model.Othello;
 import model.Player;
 
 public class GameActivity extends AppCompatActivity
 {
-    private TableLayout _table;
-    private CaseButton[][] btns;
+    private TableLayout _table;             // TableLayout containing the button of the board.
+    private CaseButton[][] _btns;           // Matrix containing the CaseButtons.
 
-    private TextView _scorePlayer1;
-    private TextView _scorePlayer2;
+    private TextView _scorePlayer1;         // TextView for the score of the Player 1.
+    private TextView _scorePlayer2;         // TextView for the score of the Player 2.
 
-    private ImageView _turn;
+    private ImageView _turn;                // ImageView to show which player is currently playing.
 
-    private Drawable _emptyCase;
-    private Drawable _player1Case;
-    private Drawable _player2Case;
-    private Drawable _player1Disk;
-    private Drawable _player2Disk;
-    private Drawable _possibleCase;
+    private Drawable _emptyCase;            // Drawable of an empty case.
+    private Drawable _player1Case;          // Drawable of a case occupied by the player 1.
+    private Drawable _player2Case;          // Drawable of a case occupied by the player 2.
+    private Drawable _player1Disk;          // Drawable of the player's 1 disk.
+    private Drawable _player2Disk;          // Drawable of the player's 2 disk.
+    private Drawable _possibleCase;         // Drawable of an available move.
 
-    private OthelloController _controller;
+    private OthelloController _controller;  // The controller of the game.
 
-    private boolean _scoresUpdated;
-    private boolean _turnUpdated;
-    private boolean _boardUpdated;
+    private boolean _scoresUpdated;         // Boolean to say if the scores have been updated.
+    private boolean _turnUpdated;           // Boolean to say if the turn has been updated.
+    private boolean _boardUpdated;          // Boolean to say if the board has been updated.
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,6 +66,7 @@ public class GameActivity extends AppCompatActivity
 
         try
         {
+            // Get the different Drawable.
             Resources res = getResources();
             _player1Disk = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
             _player1Disk.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
@@ -98,21 +92,24 @@ public class GameActivity extends AppCompatActivity
 
         try
         {
+            // Load a save or create a new game.
             String dir = getFilesDir().getAbsolutePath();
             File file = new File(dir, "save.data");
 
+            // If the file exists.
             if (file.exists())
             {
+                // Get an input stream.
                 FileInputStream fis = new FileInputStream(file);
 
+                // Create a new controller from the XML loaded.
                 _controller = OthelloController.fromXML(fis, this);
-
-                Log.d("OnCreate", "Xml loaded");
             }
+            // The file does not exist.
             else
             {
+                // Create a new game.
                 _controller = new OthelloController(this, 8);
-                Log.d("OnCreate", "No xml new game");
             }
         }
         catch (Exception e)
@@ -120,8 +117,10 @@ public class GameActivity extends AppCompatActivity
             Log.e("onCreate", e.getMessage());
         }
 
+        // Create the buttons.
         createButtons();
 
+        // Ask the controller to initialize the game and the view.
         _controller.initializeGame();
     }
 
@@ -130,6 +129,7 @@ public class GameActivity extends AppCompatActivity
     {
         super.onPause();
 
+        // Stop the controller.
         _controller.stop();
     }
 
@@ -138,6 +138,7 @@ public class GameActivity extends AppCompatActivity
     {
         super.onResume();
 
+        // Start the controller.
         _controller.start();
     }
 
@@ -150,17 +151,20 @@ public class GameActivity extends AppCompatActivity
 
         try
         {
-
+            // Convert the controller in a XML file.
             String data = _controller.toXML();
 
+            // If it can be done.
             if(data != null)
             {
+                // Save the XML in a file.
                 FileOutputStream fos = openFileOutput("save.data", Context.MODE_PRIVATE);
                 fos.write(data.getBytes());
                 fos.close();
             }
             else
             {
+                // The game is over so we delete the save.
                 String dir = getFilesDir().getAbsolutePath();
                 File file = new File(dir, "save.data");
                 file.delete();
@@ -178,6 +182,9 @@ public class GameActivity extends AppCompatActivity
     }
 
 
+    /**
+     * Create the buttons to compose the board.
+     */
     private void createButtons()
     {
         int n = _controller.getBoardSize();
@@ -185,31 +192,42 @@ public class GameActivity extends AppCompatActivity
         _table.removeAllViews();
         _table.setStretchAllColumns(true);
 
-        btns = new CaseButton[n][n];
-        for(int y=0; y<n; y++){
+        // Create the matrix.
+        _btns = new CaseButton[n][n];
 
+        for(int y=0; y<n; y++)
+        {
+            // Create a new TableRow.
             TableRow row = new TableRow(this);
             TableRow.LayoutParams paramsBtn = new TableRow.LayoutParams(1, TableRow.LayoutParams.WRAP_CONTENT);
 
             for (int x=0; x<n; x++)
             {
-                CaseButton btn = _controller.createButton(this, x, y);//new CaseButton(this, _controller.getCase(x, y));
-                btns[y][x] = btn;
-                btn.setPadding(0,0,0,0);
-                btn.setId(y * n + x);
-                btn.setLayoutParams(paramsBtn);
-                row.addView(btn);
+                // Create a new CaseButton.
+                CaseButton btn = _controller.createButton(this, x, y);
+                _btns[y][x] = btn;
+                btn.setPadding(0,0,0,0);        // Set no padding to the button.
+                btn.setId(y * n + x);           // Set the id of the button.
+                btn.setLayoutParams(paramsBtn); // Set the parameters of the button.
+                row.addView(btn);               // Add the button to the row.
+
+                // Set the button listener.
                 btn.setOnClickListener(_controller.getListener());
 
             }
 
+            // Add the row to the table.
             _table.addView(row);
             _table.setColumnShrinkable(y, true);
         }
-        setButtons(); //initialiser les images
+
+        // Initialize the images of the buttons.
+        setButtons();
     }
 
-    //initialiser les images avec l'image vide
+    /**
+     * Initializes the images of the buttons.
+     */
     public void setButtons()
     {
         int n = _controller.getBoardSize();
@@ -218,11 +236,18 @@ public class GameActivity extends AppCompatActivity
         {
             for (int x=0; x<n; x++)
             {
-                (btns[y][x]).setBackground(_emptyCase);
+                // Set all the buttons with the empty case drawable.
+                (_btns[y][x]).setBackground(_emptyCase);
             }
         }
     }
 
+    /**
+     * Updates the score of the players.
+     *
+     * @param scorePlayer1 Score of the player 1.
+     * @param scorePlayer2 Score of the player 2.
+     */
     public void updateScores(int scorePlayer1, int scorePlayer2)
     {
         _scoresUpdated = false;
@@ -233,6 +258,11 @@ public class GameActivity extends AppCompatActivity
         _scoresUpdated = true;
     }
 
+    /**
+     * Updates the the turn of the actual player.
+     *
+     * @param player The player turn.
+     */
     public void updateTurn(Player player)
     {
         _turnUpdated = false;
@@ -252,10 +282,16 @@ public class GameActivity extends AppCompatActivity
         _turnUpdated = true;
     }
 
+    /**
+     * Updates the buttons with the board.
+     *
+     * @param board
+     */
     public void updateButton(final Board board)
     {
         _boardUpdated = false;
 
+        // Scan the board.
         for (int x = 0 ; x < board.getSize() ; ++x)
         {
             for (int y = 0 ; y < board.getSize() ; ++y)
@@ -263,13 +299,13 @@ public class GameActivity extends AppCompatActivity
                 switch (board.getXY(x, y).getState())
                 {
                     case PLAYER1:
-                        (btns[y][x]).setBackground(_player1Case);
+                        (_btns[y][x]).setBackground(_player1Case);
                         break;
                     case PLAYER2:
-                        (btns[y][x]).setBackground(_player2Case);
+                        (_btns[y][x]).setBackground(_player2Case);
                         break;
                     default:
-                        (btns[y][x]).setBackground(_emptyCase);
+                        (_btns[y][x]).setBackground(_emptyCase);
                         break;
                 }
             }
@@ -282,7 +318,7 @@ public class GameActivity extends AppCompatActivity
     {
         for(Move move : moves)
         {
-            btns[move.getY()][move.getX()].setBackground(_possibleCase);
+            _btns[move.getY()][move.getX()].setBackground(_possibleCase);
         }
     }
 

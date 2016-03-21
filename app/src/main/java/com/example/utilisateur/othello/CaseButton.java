@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Button;
 
@@ -16,17 +17,31 @@ import model.State;
 
 /**
  * Created by Amaury Savarre on 3/5/2016.
+ *
+ * Create and manage CaseButton.
  */
-public class CaseButton extends Button// implements Observer
+public class CaseButton extends Button
 {
     private Case _case;
 
+    /**
+     * CaseButton Constructor.
+     *
+     * @param context The context in which the button is created.
+     * @param c The case corresponding to the button on the interface.
+     */
     public CaseButton(Context context, Case c)
     {
         super(context);
         _case = c;
     }
 
+    /**
+     * Measure the view and its content to determine the measured width and the measured height.
+     *
+     * @param widthMeasureSpec Horizontal space requirements as imposed by the parent.
+     * @param heightMeasureSpec Vertical space requirements as imposed by the parent.
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -34,41 +49,7 @@ public class CaseButton extends Button// implements Observer
         //final int height = getMeasuredHeight();
         final int width = getMeasuredWidth();
 
+        // Set the width to the two dimension so that the button is square.
         setMeasuredDimension(width, width);
     }
-
-    /*@Override
-    public void update(Observable observable, Object data)
-    {
-        /// TODO: 11/03/2016 Animation de retournement du pion.
-        //Log.d("update", "IN");
-        if(observable == _case)
-        {
-            //Log.d("update", "IN2");
-            try
-            {
-                Resources res = getResources();
-                Drawable player1 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-                Drawable player2 = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-                player2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-
-                switch ((State) data)
-                {
-                    case PLAYER1:
-                        setBackground(player1);
-                        break;
-                    case PLAYER2:
-                        setBackground(player2);
-                        break;
-                    default:
-                        setBackground(player1);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                Log.e("update", e.getMessage());
-            }
-        }
-    }*/
 }
