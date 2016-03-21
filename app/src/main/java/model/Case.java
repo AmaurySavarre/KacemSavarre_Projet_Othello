@@ -1,14 +1,13 @@
 package model;
 
-import java.util.Observable;
 
 /**
  * Created by Amaury Savarre on 2/23/2016.
+ *
+ * Class to create and manage Case.
  */
-public class Case// extends Observable
+public class Case
 {
-
-
     private State _state;     // State of the case.
 
     /**
@@ -29,11 +28,21 @@ public class Case// extends Observable
         _state = State.EMPTY;
     }
 
+    /**
+     * Case Constructor.
+     *
+     * @param state The initial state of the Case.
+     */
     public Case(State state)
     {
         _state = state;
     }
 
+    /**
+     * Case copy Constructor.
+     *
+     * @param c The case to copy.
+     */
     public Case(Case c)
     {
         _state = c._state;
@@ -59,6 +68,11 @@ public class Case// extends Observable
         return (_state == State.EMPTY);
     }
 
+    /**
+     * Copies the state of a Case.
+     *
+     * @param c The Case to copy.
+     */
     public void copy(Case c)
     {
         this._state = c.getState();

@@ -4,6 +4,8 @@ import android.util.Log;
 
 /**
  * Created by Amaury Savarre on 2/23/2016.
+ *
+ * Class to create and manage a Board.
  */
 public class Board
 {
@@ -30,11 +32,19 @@ public class Board
         }
     }
 
+    /**
+     * Board empty Constructor.
+     */
     private Board()
     {
 
     }
 
+    /**
+     * Board copy Constructor.
+     *
+     * @param board The board to copy.
+     */
     public Board(Board board)
     {
         _size = board._size;
@@ -60,6 +70,12 @@ public class Board
         return _size;
     }
 
+    /**
+     * Initializes the board to its initial state.
+     *
+     * @param player1 Player 1
+     * @param player2 Player 2
+     */
     public void initializeCases(Player player1, Player player2)
     {
         // Placing the 4 first disks.
@@ -67,24 +83,6 @@ public class Board
         changeXY(player1, (_size/2), (_size/2));
         changeXY(player2, (_size/2), (_size/2 - 1));
         changeXY(player2, (_size/2 - 1), (_size/2));
-
-        /*for(int y = 0 ; y < _size ; ++y)
-        {
-            for(int x = 0 ; x < _size ; ++x)
-            {
-                if (x != (_size/2) && y != (_size/2))
-                {
-                    if((x == 0 || y == 0 || x == _size-1 || y == _size-1))
-                    {
-                        changeXY(player1, x, y);
-                    }
-                    else
-                    {
-                        changeXY(player2, x, y);
-                    }
-                }
-            }
-        }*/
     }
 
     /**
@@ -96,14 +94,10 @@ public class Board
      */
     public void changeXY(Player player, int X, int Y)
     {
-        //Log.d("changeXY (" + X + "," + Y + ") player" + player, "IN");
-
         if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
             _board[Y][X].changeState(player);
         }
-
-        //Log.d("changeXY (" + X + "," + Y + ") player" + player, "OUT");
     }
 
     /**
@@ -115,15 +109,11 @@ public class Board
      */
     public Case getXY(int X, int Y)
     {
-        //Log.d("getXY (" + X + "," + Y + ")", "IN");
-
         if(X >= 0 && X < _size && Y >= 0 && Y < _size)
         {
-            //Log.d("getXY (" + X + "," + Y + ")", "OUT -> " + _board[X][Y]);
             return _board[Y][X];
         }
 
-        //Log.d("getXY (" + X + "," + Y + ")", "OUT -> null");
         return null;
     }
 
@@ -136,19 +126,25 @@ public class Board
      */
     public boolean caseEmpty(int X, int Y)
     {
-        //Log.d("caseEmpty (" + X + "," + Y + ")", "IN");
-        //Log.d("caseEmpty (" + X + "," + Y + ")", "OUT -> " + _board[X][Y].isEmpty());
         return _board[Y][X].isEmpty();
     }
 
+    /**
+     * Copies the given board to this board.
+     *
+     * @param board The board to copy.
+     */
     public void copy(Board board)
     {
+        // If the board are of the same size.
         if(this._size == board.getSize())
         {
+            // Scan the board.
             for(int x = 0 ; x < _size ; ++x)
             {
                 for(int y = 0 ; y < _size ; ++y)
                 {
+                    // Copy the state of the cases.
                     _board[y][x].copy(board.getXY(x, y));
                 }
             }
@@ -174,6 +170,13 @@ public class Board
         return res;
     }
 
+    /**
+     * Create a board from a string.
+     *
+     * @param data A string containing the data to create the board.
+     * @param size The size of the board.
+     * @return A new board created with the data.
+     */
     public static Board fromString(String data, int size)
     {
         Board board = new Board();
@@ -181,11 +184,13 @@ public class Board
         board._size = size;
         board._board = new Case[size][size];
 
+        // Read the data.
         for (int i = 0 ; i < data.length() ; ++i)
         {
             int x = i%size;
             int y = i/size;
 
+            // Create a case with the corresponding state.
             int val = Integer.parseInt(data.substring(i, i + 1));
             State state = State.getState(val);
             board._board[y][x] = new Case(state);
