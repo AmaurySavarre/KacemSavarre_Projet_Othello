@@ -36,6 +36,10 @@
     <string name="Game.settings_description">Button to open the setting menu</string>
     <string name="Game.player1_description">Image of the player 1 disk</string>
     <string name="Game.player2_description">Image of the player 2 disk</string>
+    <string name="Game.gameover">Game Over</string>
+    <string name="Game.winner"></string>
+    <string name="Game.restart">Restart</string>
+    <string name="Game.quit">Quit</string>
 
     <!-- Rules -->
     <string name="Rules">Rules</string>

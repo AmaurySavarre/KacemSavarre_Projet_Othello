@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background1"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/Game.gameover"
+        android:id="@+id/Game.Textview.title"
+        android:textSize="@dimen/Text.big"
+        android:textColor="@color/text"
+
+        android:layout_below="@+id/Game.Textview.winner"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/Game.winner"
+        android:id="@+id/Game.Textview.winner"
+        android:layout_alignParentLeft="true" />
+    <Button
+        style="@style/menuButton"
+        android:id="@+id/Game.Button.quit"
+        android:text="@string/Game.quit"
+        android:textSize="@dimen/Text.normal"
+        android:onClick="onQuit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/Game.Button.restart"
+        android:layout_marginBottom="91dp" />
+    <Button
+        style="@style/menuButton"
+        android:id="@+id/Game.Button.restart"
+        android:text="@string/Game.restart"
+        android:textSize="@dimen/Text.normal"
+        android:onClick="onRestart"
+        android:layout_above="@+id/Game.Button.quit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="106dp" />
+
+    <TextView
+        style="@style/AppTheme.TextView.subtitle"
+        android:id="@+id/Game.TextView.p1"
+        android:text="@string/player1"
+        android:textSize="@dimen/Text.small"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/Game.Textview.title" />
+
+    <TextView
+        style="@style/AppTheme.TextView.subtitle"
+        android:id="@+id/Game.TextView.p2"
+        android:text="@string/player2"
+        android:textSize="@dimen/Text.small"
+        android:layout_alignTop="@+id/Game.TextView.p1"
+        android:layout_alignRight="@+id/Game.Textview.title" />
+
+    <TextView
+        style="@style/AppTheme.TextView.subtitle"
+        android:id="@+id/Game.TextView.s1"
+        android:text=""
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/Text.tiny"
+        android:background="@color/title"
+        android:layout_weight="1"
+        android:paddingStart="10sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingEnd="10sp"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:layout_below="@+id/Game.TextView.p1"
+        android:layout_alignRight="@+id/Game.TextView.p1"
+        android:layout_marginRight="40dp" />
+    <TextView
+        style="@style/AppTheme.TextView.subtitle"
+        android:id="@+id/Game.TextView.s2"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/Text.tiny"
+        android:background="@color/background_main"
+        android:layout_weight="1"
+        android:paddingStart="10sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingEnd="10sp"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:layout_below="@+id/Game.TextView.p2"
+         android:layout_alignRight="@+id/Game.TextView.p2"
+        android:layout_marginLeft="40dp" />
+</RelativeLayout>

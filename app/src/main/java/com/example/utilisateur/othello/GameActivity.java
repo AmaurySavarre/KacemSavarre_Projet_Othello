@@ -303,4 +303,5 @@ public class GameActivity extends AppCompatActivity
     {
         finish();
     }
+
 }

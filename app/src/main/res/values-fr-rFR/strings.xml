@@ -42,5 +42,6 @@
     <string name="Settings.active_help">Activer les aides</string>
     <string name="Game.turn_description">Couleur du joueur actuel</string>
     <string name="Settings.save">Sauver</string>
+    <string name="gameover">Partie Terminée</string>
 
 </resources>
