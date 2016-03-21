@@ -16,3 +16,5 @@ public class RulesActivity extends AppCompatActivity {
         text.setMovementMethod(new ScrollingMovementMethod());
     }
 }
+
+// TODO: 3/21/2016 Mettre des images pour les régles.
