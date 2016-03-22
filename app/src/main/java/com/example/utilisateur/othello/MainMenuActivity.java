@@ -5,20 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-
-import controller.OthelloController;
-import model.Othello;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -27,6 +19,30 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        initView();
+    }
+
+    private void initView()
+    {
+        Button btn = (Button) findViewById(R.id.MainMenu_Button_play);
+        btn.setText(R.string.MainMenu_play);
+
+        btn = (Button) findViewById(R.id.MainMenu_Button_highScores);
+        btn.setText(R.string.MainMenu_high_scores);
+
+        btn = (Button) findViewById(R.id.MainMenu_Button_exit);
+        btn.setText(R.string.MainMenu_exit);
+
+        TextView label = (TextView) findViewById(R.id.MainMenu_TextView_title);
+        label.setText(R.string.MainMenu_label);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        initView();
     }
 
     public void onPlay(View v)
@@ -106,7 +122,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onExit(View v)
     {
-
+        // Exit the application.
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

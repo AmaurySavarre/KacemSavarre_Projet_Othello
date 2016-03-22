@@ -50,7 +50,7 @@ public class PlayerAI extends Player
             othello.setBoard(boardSave);
 
             // If the current move is the best.
-            if (moveValue >= bestValue && moveValue != Integer.MIN_VALUE)
+            if (moveValue >= bestValue)
             {
                 // Update the best move.
                 if(rand.nextInt(100)>50)
@@ -58,10 +58,6 @@ public class PlayerAI extends Player
                     bestValue = moveValue;
                     bestMove = move;
                 }
-            }
-            else
-            {
-                bestMove = move;
             }
         }
 

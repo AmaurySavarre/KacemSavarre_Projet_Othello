@@ -2,10 +2,8 @@ package com.example.utilisateur.othello;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +22,6 @@ public class SettingsActivity extends AppCompatActivity {
     Spinner spinner;
     String[] languages_string = { "English",
                                   "Français" };
-
-    int languages_icon[] = { R.drawable.us,
-                             R.drawable.fr };
-
     Language[] _languages;
 
     @Override
@@ -68,7 +62,13 @@ public class SettingsActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
             View row = inflater.inflate(R.layout.row, parent, false);
-            row.setBackground(getDrawable(R.drawable.spinner_shape));
+            if(android.os.Build.VERSION.SDK_INT >= 21) {
+                row.setBackground(getResources().getDrawable(R.drawable.spinner_shape, getContext().getTheme()));
+            }
+            else
+            {
+                row.setBackground(getResources().getDrawable(R.drawable.spinner_shape));
+            }
             TextView label = (TextView) row.findViewById(R.id.Row_TextView_name);
             ImageView icon = (ImageView) row.findViewById(R.id.Row_ImageView_icon);
 
@@ -99,6 +99,11 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Change the location and language of the application.
+     *
+     * @param locale The new location.
+     */
     public void setLocale(Locale locale)
     {
         Locale.setDefault(locale);

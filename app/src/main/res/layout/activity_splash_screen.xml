@@ -48,7 +48,7 @@
         android:id="@+id/textView"
         android:layout_below="@+id/black_disk"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/Text.big"
+        android:textSize="@dimen/Text.normal"
         android:textColor="@android:color/black"
         android:layout_marginTop="50dp"
         android:textStyle="bold|italic"

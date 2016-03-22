@@ -17,6 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         StartAnimations();
 
+        // Create an handler to launch the next activity after some time.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -26,18 +27,31 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, 5000);
     }
 
-    private void StartAnimations() {
+    /**
+     * Start the animation for the splash screen.
+     */
+    private void StartAnimations()
+    {
+        // Create an animation set.
         AnimationSet s = new AnimationSet(false);
+
+        // Load the animation.
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        // Set the animation duration.
         anim.setDuration(2000);
+        // Reset the animation.
         anim.reset();
+        // Get the element on which the animation is launched.
         ImageView l = (ImageView) findViewById(R.id.black_disk);
+        // Clear the animation.
         l.clearAnimation();
+        // Start the animation.
         l.startAnimation(anim);
 
-      Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.translate);
+        Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim2.reset();
         anim2.setDuration(2000);
+        // Set an offset to wait for it to begin.
         anim2.setStartOffset(1000);
 
         ImageView iv = (ImageView) findViewById(R.id.white_disk);
@@ -55,13 +69,5 @@ public class SplashScreenActivity extends AppCompatActivity {
         s.addAnimation(anim);
         s.addAnimation(anim2);
         s.addAnimation(anim1);
-
-       /* anim = AnimationUtils.loadAnimation(this, R.anim.translate);
-        anim.reset();
-        setContentView(R.layout.activity_splash_screen);
-        RelativeLayout l2 = (RelativeLayout) findViewById(R.id.splash_layout1);
-        l2.setVisibility(View.VISIBLE);
-        l2.clearAnimation();
-        l2.startAnimation(anim);*/
     }
 }

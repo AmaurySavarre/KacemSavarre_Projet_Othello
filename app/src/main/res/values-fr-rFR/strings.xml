@@ -2,6 +2,7 @@
 <resources>
     <string name="player1">Joueur 1</string>
     <string name="player2">Joueur 2</string>
+    <string name="player">Joueur</string>
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -9,7 +10,7 @@
     <!-- Main Menu -->
     <string name="MainMenu.label">Menu Principal</string>
     <string name="MainMenu.play">Jouer</string>
-    <string name="MainMenu.high_scores">High Scores</string>
+    <string name="MainMenu.high_scores">Meilleurs scores</string>
     <string name="MainMenu.exit">Quitter</string>
     <string name="MainMenu.newGame">Voulez-vous continuer la partie précédente ?</string>
 
@@ -21,7 +22,7 @@
     <string name="Settings.label">Options</string>
     <string name="Settings.language">Langue :</string>
     <string name="Settings.help">Aide :</string>
-    <string name="Settings.music">Music :</string>
+    <string name="Settings.music">Musique :</string>
     <string name="Settings.choose_language">Choisissez une langue&#8230;</string>
     <string name="Settings.save">Sauver</string>
     <string name="Settings.active_help">Activer les aides</string>
@@ -47,6 +48,6 @@
 
     <!-- Rules -->
     <string name="Rules">Régles</string>
-    <string name="text">Noir commence toujours la partie. Puis les joueurs jouent à tour de rôle, chacun étant tenu de capturer des pions adverses lors de son mouvement. Si un joueur ne peut pas capturer de pion(s) adverse(s), il est forcé de passer son tour. Si aucun des deux joueurs ne peut jouer,
-        ou si l\'othellier ne comporte plus de case vide, la partie s\'arrête. Le gagnant en fin de partie est celui qui possède le plus de pions. La capture de pions survient lorsqu\'un joueur place un de ses pions à l\'extrémité d\'un alignement de pions adverses contigus et dont l\'autre extrémité est déjà occupée par un de ses propres pions. Les alignements considérés peuvent être une colonne, une ligne, ou une diagonale.Si le pion nouvellement placé vient fermer plusieurs alignements, il capture tous les pions adverses des lignes ainsi fermées. La capture se traduit par le retournement des pions capturé. Ces retournements n\'entraînent pas d\'effet de capture en cascade : seul le pion nouvellement posé est pris en compte.</string>
+    <string name="text">Noir commence toujours la partie.\n Puis les joueurs jouent à tour de rôle, chacun étant tenu de capturer des pions adverses lors de son mouvement. \n Si un joueur ne peut pas capturer de pion(s) adverse(s), il est forcé de passer son tour.\n Si aucun des deux joueurs ne peut jouer,
+        ou si l\'othellier ne comporte plus de case vide, la partie s\'arrête.\n Le gagnant en fin de partie est celui qui possède le plus de pions.\n La capture de pions survient lorsqu\'un joueur place un de ses pions à l\'extrémité d\'un alignement de pions adverses contigus et dont l\'autre extrémité est déjà occupée par un de ses propres pions.\n Les alignements considérés peuvent être une colonne, une ligne, ou une diagonale.\n Si le pion nouvellement placé vient fermer plusieurs alignements, il capture tous les pions adverses des lignes ainsi fermées.\n La capture se traduit par le retournement des pions capturé.\n Ces retournements n\'entraînent pas d\'effet de capture en cascade : seul le pion nouvellement posé est pris en compte.</string>
 </resources>

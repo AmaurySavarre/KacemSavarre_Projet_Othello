@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name" translatable="false">KSOthello</string>
+    <string name="app_name" translatable="false">KacemSavarre</string>
+    <string name="authors" translatable="false">Rim Kacem &amp; Amaury Savarre</string>
 
     <string name="player1">Player 1</string>
     <string name="player2">Player 2</string>
+    <string name="player">Player</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -47,8 +49,8 @@
 
     <!-- Rules -->
     <string name="Rules">Rules</string>
-    <string name="text">Noir commence toujours la partie.\n Puis les joueurs jouent à tour de rôle, chacun étant tenu de capturer des pions adverses lors de son mouvement. \n Si un joueur ne peut pas capturer de pion(s) adverse(s), il est forcé de passer son tour.\n Si aucun des deux joueurs ne peut jouer,
-        ou si l\'othellier ne comporte plus de case vide, la partie s\'arrête.\n Le gagnant en fin de partie est celui qui possède le plus de pions.\n La capture de pions survient lorsqu\'un joueur place un de ses pions à l\'extrémité d\'un alignement de pions adverses contigus et dont l\'autre extrémité est déjà occupée par un de ses propres pions.\n Les alignements considérés peuvent être une colonne, une ligne, ou une diagonale.\n Si le pion nouvellement placé vient fermer plusieurs alignements, il capture tous les pions adverses des lignes ainsi fermées.\n La capture se traduit par le retournement des pions capturé.\n Ces retournements n\'entraînent pas d\'effet de capture en cascade : seul le pion nouvellement posé est pris en compte.</string>
+    <string name="text">Black always begins the game.\n Then the players play turn by turn, each has to catch the disks of the opponent during his turn.\n If a player can\'t catch an opponent disk, he is forced to pass his turn.\n If none of the players can play,
+        or if the Reversi have no empty case left, the game end.\n The winner at the end of the game is the one which process the most disks.\n A catch of a disk happens when a player place one of his disk at the end of the disks alignment of opponent\'s disks and which is ended by one of his own disks.\n The alignments considered are column, line or diagonal.\n If the newly placed disk has closed many alignments, it catches every opponent disks of the lines it closes.\n A catch returns every disks captured.</string>
 
 </resources>
 

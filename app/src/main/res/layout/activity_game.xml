@@ -126,6 +126,7 @@
             android:src="@drawable/ic_help_outline_black_48dp"
             android:contentDescription="@string/Game.rules_description"
             android:layout_weight="1"
+            android:onClick="onRules"
             />
 
         <ImageButton

@@ -59,16 +59,24 @@ public class GameActivity extends AppCompatActivity
         {
             // Get the different Drawable.
             Resources res = getResources();
+            // Get the shape of the disk of player 1.
             _player1Disk = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
+            // Apply a filter to make it black.
             _player1Disk.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            // Get the shape of the disk of player 2.
             _player2Disk = Drawable.createFromXml(res, res.getXml(R.xml.disc_shape));
 
+            // Get the shape of a case occupied by player 1.
             _player1Case = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
-            _player2Case = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
+            // Apply a filter to make it black.
             _player1Case.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            // Get the shape of a case occupied by player 2.
+            _player2Case = Drawable.createFromXml(res, res.getXml(R.xml.case_full_shape));
 
+            // Get the shape of an empty case.
             _emptyCase = Drawable.createFromXml(res, res.getXml(R.xml.case_empty_shape));
 
+            // Get the shape of an hint case.
             _possibleCase = Drawable.createFromXml(res, res.getXml(R.xml.case_possible_move));
 
         }
@@ -107,13 +115,11 @@ public class GameActivity extends AppCompatActivity
         {
             Log.e("onCreate", e.getMessage());
         }
-
-        initView();
-
-        // Ask the controller to initialize the game and the view.
-        _controller.initializeGame();
     }
 
+    /**
+     * Initializes the view to update the the text.
+     */
     private void initView()
     {
         _scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
@@ -122,6 +128,15 @@ public class GameActivity extends AppCompatActivity
         _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
 
         _table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
+
+        TextView _textPlayer1 = (TextView) findViewById(R.id.Game_TextView_p1);
+        _textPlayer1.setText(R.string.player1);
+
+        TextView _textPlayer2 = (TextView) findViewById(R.id.Game_TextView_p2);
+        _textPlayer2.setText(R.string.player2);
+
+        TextView _textScore = (TextView) findViewById(R.id.Game_TextView_scores);
+        _textScore.setText(R.string.scores);
 
         // Create the buttons.
         createButtons();
@@ -139,7 +154,13 @@ public class GameActivity extends AppCompatActivity
     @Override
     protected void onResume()
     {
+        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         super.onResume();
+
+        initView();
+
+        // Ask the controller to initialize the game and the view.
+        _controller.initializeGame();
 
         // Start the controller.
         _controller.start();
@@ -342,7 +363,8 @@ public class GameActivity extends AppCompatActivity
 
         if (player != null)
         {
-            winner.setText(res.getString(R.string.Game_winner, player.toString()));
+            String playerName = res.getString(R.string.player) + " " + String.valueOf(player.getNumber());
+            winner.setText(res.getString(R.string.Game_winner, playerName));
         }
         else
         {
@@ -370,8 +392,6 @@ public class GameActivity extends AppCompatActivity
      */
     public void onSettings(View v)
     {
-        Toast.makeText(getApplicationContext(), "onSettings()", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(GameActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
@@ -395,5 +415,11 @@ public class GameActivity extends AppCompatActivity
     public void onQuit(View v)
     {
         finish();
+    }
+
+    public void onRules(View v)
+    {
+        Intent intent = new Intent(GameActivity.this, RulesActivity.class);
+        startActivity(intent);
     }
 }

@@ -327,7 +327,9 @@ public class OthelloController
         });
     }
 
-
+    /**
+     * Asks the view to show the game over.
+     */
     public void showGameOver()
     {
         _view.runOnUiThread(new Runnable() {

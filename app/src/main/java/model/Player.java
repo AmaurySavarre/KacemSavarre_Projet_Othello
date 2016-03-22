@@ -1,5 +1,7 @@
 package model;
 
+import android.content.res.Resources;
+
 /**
  * Created by Amaury Savarre on 27/02/2016.
  *
