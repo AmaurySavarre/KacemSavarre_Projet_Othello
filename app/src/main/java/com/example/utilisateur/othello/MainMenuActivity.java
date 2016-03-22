@@ -101,12 +101,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onHighScores(View v)
     {
-        Toast.makeText(getApplicationContext(), "onHighScores()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Nope !", Toast.LENGTH_SHORT).show();
     }
 
     public void onExit(View v)
     {
-        Toast.makeText(getApplicationContext(), "onExit()", Toast.LENGTH_SHORT).show();
 
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory( Intent.CATEGORY_HOME );
@@ -116,16 +115,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onRules(View v)
     {
-        Toast.makeText(getApplicationContext(), "onRules()", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(MainMenuActivity.this, RulesActivity.class);
         startActivity(intent);
     }
 
     public void onSettings(View v)
     {
-        Toast.makeText(getApplicationContext(), "onSettings()", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
         startActivity(intent);
     }

@@ -16,7 +16,6 @@
         style="@style/AppTheme.TextView.title"
         android:id="@+id/MainMenu.TextView.title"
         android:text="@string/MainMenu.label"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 

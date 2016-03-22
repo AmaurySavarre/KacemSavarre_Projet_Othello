@@ -24,7 +24,7 @@
     </style>
 
     <style name="menuButton" >
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
@@ -39,6 +39,8 @@
         <item name="android:shadowDx">4</item>
         <item name="android:shadowDy">4</item>
         <item name="android:shadowRadius">5</item>
+
+        <item name="android:ems">7</item>
     </style>
 
     <style name="imageButton">

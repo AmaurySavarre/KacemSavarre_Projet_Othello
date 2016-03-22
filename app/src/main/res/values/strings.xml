@@ -23,13 +23,15 @@
     <string name="Settings.language">Language :</string>
     <string name="Settings.help">Help :</string>
     <string name="Settings.music">Music :</string>
-    <string name="Settings.choose_language">Choose a language...</string>
+    <string name="Settings.choose_language">Choose a language&#8230;</string>
+    <string name="Settings.active_help">Activates the helps</string>
+    <string name="Settings.save">Save</string>
 
     <!-- Game -->
     <string name="scores">Scores</string>
     <string name="s1">S1</string>
     <string name="s2">S2</string>
-    <string name="Game.label">Othello</string>
+    <string name="Game.label">Reversi</string>
     <string name="Game.turn_description">Color of the actual player turn\'s</string>
     <string name="Game.rules_description">Button to show the rules</string>
     <string name="Game.home_description">Button to get back to the main menu</string>
@@ -37,17 +39,16 @@
     <string name="Game.player1_description">Image of the player 1 disk</string>
     <string name="Game.player2_description">Image of the player 2 disk</string>
     <string name="Game.gameover">Game Over</string>
-    <string name="Game.winner"></string>
+    <string name="Game.winner">%1$s Wins !</string>
     <string name="Game.restart">Restart</string>
     <string name="Game.quit">Quit</string>
+    <string name="Game.cannot_play">%1$s can\'t play !</string>
+    <string name="Game.draw">No winner !</string>
 
     <!-- Rules -->
     <string name="Rules">Rules</string>
     <string name="text">Noir commence toujours la partie. Puis les joueurs jouent à tour de rôle, chacun étant tenu de capturer des pions adverses lors de son mouvement. Si un joueur ne peut pas capturer de pion(s) adverse(s), il est forcé de passer son tour. Si aucun des deux joueurs ne peut jouer,
         ou si l\'othellier ne comporte plus de case vide, la partie s\'arrête. Le gagnant en fin de partie est celui qui possède le plus de pions. La capture de pions survient lorsqu\'un joueur place un de ses pions à l\'extrémité d\'un alignement de pions adverses contigus et dont l\'autre extrémité est déjà occupée par un de ses propres pions. Les alignements considérés peuvent être une colonne, une ligne, ou une diagonale.Si le pion nouvellement placé vient fermer plusieurs alignements, il capture tous les pions adverses des lignes ainsi fermées. La capture se traduit par le retournement des pions capturé. Ces retournements n\'entraînent pas d\'effet de capture en cascade : seul le pion nouvellement posé est pris en compte.</string>
-    <string name="Settings.active_help">Activates the helps</string>
-    <string name="Settings.save">Save</string>
-
 
 </resources>
 

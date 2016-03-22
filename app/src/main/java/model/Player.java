@@ -92,4 +92,9 @@ abstract public class Player
      * @param y The y coordinate on the game.
      */
     abstract public void playAt(int x, int y);
+
+    public String toString()
+    {
+        return "Player " + String.valueOf(_number);
+    }
 }

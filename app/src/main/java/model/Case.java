@@ -59,6 +59,16 @@ public class Case
     }
 
     /**
+     * Changes the state of the case.
+     *
+     * @param state The new state.
+     */
+    public void changeState(State state)
+    {
+        _state = state;
+    }
+
+    /**
      * Checks if the case is empty.
      *
      * @return A boolean which validate if the case is empty (true) or not (false).

@@ -92,13 +92,12 @@
         android:onClick="onBack" />
 
     <Button
+        style="@style/menuButton"
         android:id="@+id/Settings.Button.save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Settings.SeekBar.music"
         android:text="@string/Settings.save"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/Text.tiny"/>
+        android:textSize="@dimen/Text.normal"
+        android:onClick="onSave"
+        android:layout_below="@+id/Settings.SeekBar.music"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

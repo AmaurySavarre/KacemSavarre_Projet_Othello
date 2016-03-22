@@ -1,24 +1,26 @@
 package model;
 
+import java.util.Locale;
+
 /**
  * Created by Amaury on 20/03/2016.
  */
 public class Language
 {
-    private String _code;
+    private Locale _locale;
     private String _text;
     private int _flag;
 
-    public Language(String code, String name, int flag)
+    public Language(Locale code, String name, int flag)
     {
-        _code = code;
+        _locale = code;
         _text = name;
         _flag = flag;
     }
 
-    public String getCode()
+    public Locale getLocale()
     {
-        return _code;
+        return _locale;
     }
 
     public String getText()

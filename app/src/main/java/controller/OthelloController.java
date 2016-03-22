@@ -2,6 +2,7 @@ package controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.utilisateur.othello.CaseButton;
 import com.example.utilisateur.othello.GameActivity;
+import com.example.utilisateur.othello.R;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -206,6 +208,20 @@ public class OthelloController
         return _othello.getBoardSize();
     }
 
+    public Player getWinner()
+    {
+        if(_othello.getScore(_player1) > _othello.getScore(_player2))
+        {
+            return _player1;
+        }
+        else if (_othello.getScore(_player1) < _othello.getScore(_player2))
+        {
+            return _player2;
+        }
+
+        return null;
+    }
+
     /**
      * Create a button for the board.
      *
@@ -227,6 +243,21 @@ public class OthelloController
         changeScores();                     // Update the scores.
         updateBoard();                      // Update the buttons.
         _view.updateTurn(_actual_player);   // Set the turn to the actual player.
+    }
+
+    /**
+     * Resets the game.
+     */
+    public void resetGame()
+    {
+        _actual_player = _player1;
+
+        _othello.initializeBoard();
+        initializeGame();
+
+        _waiting = true;
+
+        start();
     }
 
     /**
@@ -297,6 +328,17 @@ public class OthelloController
     }
 
 
+    public void showGameOver()
+    {
+        _view.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                _view.showGameOver();
+            }
+        });
+    }
+
+
     public void launchToast(final String toast)
     {
         _view.runOnUiThread(new Runnable() {
@@ -336,6 +378,8 @@ public class OthelloController
         public void run()
         {
             _isRunning = true;  // The thread is running.
+
+            Resources res = _view.getResources();
 
             // Loop while the game is not over and the thread is running.
             while(!_othello.gameOver() && _isRunning)
@@ -381,8 +425,7 @@ public class OthelloController
                 else
                 {
                     // Advert player that he can't play.
-                    launchToast("Ne peut pas jouer");
-                    // TODO: 11/03/2016 Prévenir le joueur qu'il ne peut pas jouer.
+                    launchToast(res.getString(R.string.Game_cannot_play, _actual_player.toString()));
                 }
 
                 // If the thread is running.
@@ -395,12 +438,7 @@ public class OthelloController
 
             if(_isRunning)
             {
-                // TODO: 11/03/2016 Gérer la fin de partie.
-                launchToast("Partie finie !");
-            }
-            else
-            {
-                Log.d("GameThread.run()", "stop running");
+                showGameOver();
             }
 
             _isRunning = false;

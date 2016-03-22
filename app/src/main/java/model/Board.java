@@ -78,6 +78,15 @@ public class Board
      */
     public void initializeCases(Player player1, Player player2)
     {
+        // Initializing the matrix of cases.
+        for(int x = 0 ; x < _size ; ++x)
+        {
+            for(int y = 0 ; y < _size ; ++y)
+            {
+                _board[y][x].changeState(State.EMPTY);
+            }
+        }
+
         // Placing the 4 first disks.
         changeXY(player1, (_size/2 - 1), (_size/2 - 1));
         changeXY(player1, (_size/2), (_size/2));

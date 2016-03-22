@@ -18,9 +18,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import controller.OthelloController;
@@ -56,13 +54,6 @@ public class GameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        _scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
-        _scorePlayer2 = (TextView) findViewById(R.id.Game_TextView_s2);
-
-        _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
-
-        _table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
 
         try
         {
@@ -117,11 +108,23 @@ public class GameActivity extends AppCompatActivity
             Log.e("onCreate", e.getMessage());
         }
 
-        // Create the buttons.
-        createButtons();
+        initView();
 
         // Ask the controller to initialize the game and the view.
         _controller.initializeGame();
+    }
+
+    private void initView()
+    {
+        _scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
+        _scorePlayer2 = (TextView) findViewById(R.id.Game_TextView_s2);
+
+        _turn = (ImageView) findViewById(R.id.Game_ImageView_turn);
+
+        _table = (TableLayout) findViewById(R.id.Game_TableLayout_board);
+
+        // Create the buttons.
+        createButtons();
     }
 
     @Override
@@ -141,8 +144,6 @@ public class GameActivity extends AppCompatActivity
         // Start the controller.
         _controller.start();
     }
-
-
 
     @Override
     protected void onStop()
@@ -171,11 +172,7 @@ public class GameActivity extends AppCompatActivity
             }
 
         }
-        catch (FileNotFoundException e)
-        {
-            Log.e("onDestroy", e.getMessage());
-        }
-        catch (IOException e)
+        catch (Exception e)
         {
             Log.e("onDestroy", e.getMessage());
         }
@@ -285,7 +282,7 @@ public class GameActivity extends AppCompatActivity
     /**
      * Updates the buttons with the board.
      *
-     * @param board
+     * @param board Board on which the interface is based on.
      */
     public void updateButton(final Board board)
     {
@@ -296,6 +293,7 @@ public class GameActivity extends AppCompatActivity
         {
             for (int y = 0 ; y < board.getSize() ; ++y)
             {
+                // Set the appropriate background depending on the state of the case.
                 switch (board.getXY(x, y).getState())
                 {
                     case PLAYER1:
@@ -314,6 +312,11 @@ public class GameActivity extends AppCompatActivity
         _boardUpdated = true;
     }
 
+    /**
+     * Show the available moves to the player on the board.
+     *
+     * @param moves List of moves available to the player.
+     */
     public void showPlayerMoves(List<Move> moves)
     {
         for(Move move : moves)
@@ -322,11 +325,49 @@ public class GameActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Show the game over screen.
+     */
+    public void showGameOver()
+    {
+        setContentView(R.layout.activity_gameover);
+
+        Resources res = getResources();
+
+        TextView winner = (TextView) findViewById(R.id.Game_TextView_winner);
+        TextView scorePlayer1 = (TextView) findViewById(R.id.Game_TextView_s1);
+        TextView scorePlayer2 = (TextView) findViewById(R.id.Game_TextView_s2);
+
+        Player player = _controller.getWinner();
+
+        if (player != null)
+        {
+            winner.setText(res.getString(R.string.Game_winner, player.toString()));
+        }
+        else
+        {
+            winner.setText(res.getString(R.string.Game_draw));
+        }
+
+        scorePlayer1.setText(_scorePlayer1.getText());
+        scorePlayer2.setText(_scorePlayer2.getText());
+    }
+
+    /**
+     * Says if the interface is updated.
+     *
+     * @return True if the game is updated, else false.
+     */
     public boolean updated()
     {
         return (_boardUpdated && _scoresUpdated && _turnUpdated);
     }
 
+    /**
+     * Action on the settings button.
+     *
+     * @param v View of the button.
+     */
     public void onSettings(View v)
     {
         Toast.makeText(getApplicationContext(), "onSettings()", Toast.LENGTH_SHORT).show();
@@ -335,9 +376,24 @@ public class GameActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Action on the home button.
+     *
+     * @param v View of the button.
+     */
     public void onHome(View v)
     {
         finish();
     }
 
+    public void onRestart(View v) {
+        setContentView(R.layout.activity_game);
+        initView();
+        _controller.resetGame();
+    }
+
+    public void onQuit(View v)
+    {
+        finish();
+    }
 }
