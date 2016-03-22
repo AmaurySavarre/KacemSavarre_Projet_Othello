@@ -1,8 +1,8 @@
-Notons qu'on a essayer de minimiser le nombre des activités possibles , notre application se d�compose des cinq activit�s suivantes : SplashScreenActivity, MainMenuActivity , GameActivity ,SettingsActivity , RulesActivity .
-On commence par le SplashScreen et juste apr�s la fin de l'animation on se retrouve sur le menu principale o� on peut commencer � jouer , consulter les meilleurs scores (pas impl�ment�) ou quitter le jeu.
-En sélectionnant jouer, le joueur à la possibilit� de reprendre une partie d�j� commenc�e ou de recommencer une nouvelle partie.
-Afin de commencer le jeu , il faut choisir si on veut une partie " joueur contre joueur" ou " joueur contre machine". Par contre on a pas eu assez du temps pour r�aliser les diff�rents niveaux de l'intelligence artificielle donc on se contente d'un niveau moyen (dont la profondeur de recherche est �gal � 3)
-D�s que le jeu commence, on a les scores des joueurs qui s'affichent ainsi que la couleur  indiquant le tour du joueur concern�.
-Le joueur peut g�rer les param�tres : changer la langue (fran�ais/anglais) , r�gler le son (pas impl�ment�) , activer ou d�sactiver les aides que le jeu propose (pas impl�ment�).
-Le joueur peut �galement s'informer des r�gles du jeu.
-A la fin de la partie, on a un affichage des scores finaux et le joueur gagnant. On a ainsi la possibilit� de recommencer le jeu ou quitter la partie pour revenir au menu principal.
+Nous avons essayé de minimiser le nombre d'activités possibles, notre application se décompose des cinq activités suivantes : SplashScreenActivity, MainMenuActivity , GameActivity ,SettingsActivity , RulesActivity .
+On commence par le SplashScreen et juste aprés la fin de l'animation on se retrouve sur le menu principal où on peut commencer à jouer , consulter les meilleurs scores (pas implémenté) ou quitter le jeu.
+En sélectionnant jouer, le joueur à la possibilité de reprendre une partie déjà commencée ou de recommencer une nouvelle partie.
+Afin de commencer le jeu , il faut choisir si on veut une partie " joueur contre joueur" ou " joueur contre machine". Par contre on a pas eu assez du temps pour réaliser les différents niveaux de l'intelligence artificielle donc on se contente d'un niveau moyen (dont la profondeur de recherche est égal à 3)
+Dés que le jeu commence, on a les scores des joueurs qui s'affichent ainsi que la couleur  indiquant le tour du joueur concerné.
+Le joueur peut gérer les paramétres : changer la langue (français/anglais) , régler le son (pas implémenté) , activer ou désactiver les aides que le jeu propose (pas implémenté).
+Le joueur peut également s'informer des régles du jeu.
+A la fin de la partie, on a un affichage des scores finaux et le joueur gagnant. On a ainsi la possibilité de recommencer le jeu ou quitter la partie pour revenir au menu principal.
